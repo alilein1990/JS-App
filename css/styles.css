@@ -20,7 +20,7 @@ div{
     
 }
 
-@media all and (max-width: 500px) and (max-width: 750px) {
+@media all and (min-width: 500px) and (max-width: 750px) {
     div{
         width: 320px;
     }
