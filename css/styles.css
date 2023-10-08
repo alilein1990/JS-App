@@ -1,0 +1,12 @@
+div{
+    border: 2px solid rgb(7, 228, 73);
+    border-radius: 15px;
+    padding: 10px;
+    text-align: center;
+    margin: 30px auto;
+}
+
+/* #container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+} */
