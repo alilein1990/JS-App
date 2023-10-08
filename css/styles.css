@@ -2,11 +2,27 @@ div{
     border: 2px solid rgb(7, 228, 73);
     border-radius: 15px;
     padding: 10px;
-    text-align: center;
+    text-align: left;
     margin: 30px auto;
+    width: 400px;
 }
 
 /* #container{
     display: grid;
     grid-template-columns: 1fr 1fr;
 } */
+
+
+@media all and (max-width: 500px) {
+    div{
+        width: 250px;
+    }
+    
+}
+
+@media all and (max-width: 500px) and (max-width: 750px) {
+    div{
+        width: 320px;
+    }
+    
+}
