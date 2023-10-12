@@ -6,14 +6,16 @@ let pokemonRepository = (function () {
         { name: 'Ariados', height: 110, types: ['bug', ' poison'] },
         { name: 'Slowbro', height: 160, types: ['psychic', ' water'] }
     ];
-
+    //returns a list of all pokemon
     function getAll() {
         return pokemonList;
     }
-
+    // allows to add new pokemon to the array if it meets the needed conditions
     function add(pokemon) {
+        //makes sure the type is object
         if (typeof pokemon === 'object') {
 
+            // makes sures keys from pokemon match the keys from pokemonList 
             let keys = Object.keys(pokemon).map(function(toLower){
                 return toLower.toLowerCase();
             })
@@ -28,22 +30,39 @@ let pokemonRepository = (function () {
                 return pokemonList.push(pokemon);
             }
             else{
-                document.write('Error: Wrong keys. The keys are: name, height, types.');
+                console.log('Error: Wrong keys. The keys are: name, height, types.');
             }
         } else {
-            document.write('Please add an object as the pokemon');
+            console.log('Please add an object as the pokemon.');
+        }
+    }
+    //allows to find pokemon by name
+    function filter(name){
+        if(typeof name === 'string' && name !== ''){
+        let pokemonNames = pokemonList.map(function (pokemon){
+            return pokemon.name.toLowerCase();
+        }) 
+        let lowerCaseName = name.toLowerCase();
+        nameInList = pokemonNames.includes(lowerCaseName);
+        if(nameInList){
+                console.log('The pokemon: ' + name + ' is in the list! :D');
+        }else{
+            console.log('This pokemon doesn\'t exist in the list')
+        }}else{
+            console.log('Input must be a string.')
         }
     }
 
-    function filter(){
-
-    }
     return {
         getAll,
         add,
         filter
     };
 })();
+
+
+// pokemonRepository.add(vv); -> why i don’t get the error message i predefined?
+
 
 // Loops through the array of pokemon and points out which ones height is <= 70
 pokemonRepository.getAll().forEach(function (element) {
