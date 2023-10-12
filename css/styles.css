@@ -15,7 +15,8 @@ div{
 
 @media all and (max-width: 500px) {
     div{
-        width: 250px;
+      width: 80vw;
+       margin:20px auto;
     }
     
 }
