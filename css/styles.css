@@ -1,4 +1,4 @@
-div{
+li{
     border: 2px solid rgb(7, 228, 73);
     border-radius: 15px;
     padding: 10px;
@@ -7,11 +7,14 @@ div{
     width: 400px;
 }
 
-/* #container{
+#container{
     display: grid;
     grid-template-columns: 1fr 1fr;
-} */
+}
 
+.button-class{
+    color: red;;
+}
 
 @media all and (max-width: 500px) {
     div{

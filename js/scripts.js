@@ -16,20 +16,20 @@ let pokemonRepository = (function () {
         if (typeof pokemon === 'object') {
 
             // makes sures keys from pokemon match the keys from pokemonList 
-            let keys = Object.keys(pokemon).map(function(toLower){
+            let keys = Object.keys(pokemon).map(function (toLower) {
                 return toLower.toLowerCase();
             })
 
-            let validKeys = keys.every(function(validk){
-                return Object.keys(pokemonList[0]).map(function(toLower){
+            let validKeys = keys.every(function (validk) {
+                return Object.keys(pokemonList[0]).map(function (toLower) {
                     return toLower.toLowerCase();
                 }).includes(validk);
             })
-            
-            if(validKeys){
+
+            if (validKeys) {
                 return pokemonList.push(pokemon);
             }
-            else{
+            else {
                 console.log('Error: Wrong keys. The keys are: name, height, types.');
             }
         } else {
@@ -37,26 +37,39 @@ let pokemonRepository = (function () {
         }
     }
     //allows to find pokemon by name
-    function filter(name){
-        if(typeof name === 'string' && name !== ''){
-        let pokemonNames = pokemonList.map(function (pokemon){
-            return pokemon.name.toLowerCase();
-        }) 
-        let lowerCaseName = name.toLowerCase();
-        nameInList = pokemonNames.includes(lowerCaseName);
-        if(nameInList){
+    function filter(name) {
+        if (typeof name === 'string' && name !== '') {
+            let pokemonNames = pokemonList.map(function (pokemon) {
+                return pokemon.name.toLowerCase();
+            })
+            let lowerCaseName = name.toLowerCase();
+            nameInList = pokemonNames.includes(lowerCaseName);
+            if (nameInList) {
                 console.log('The pokemon: ' + name + ' is in the list! :D');
-        }else{
-            console.log('This pokemon doesn\'t exist in the list')
-        }}else{
+            } else {
+                console.log('This pokemon doesn\'t exist in the list')
+            }
+        } else {
             console.log('Input must be a string.')
         }
+    }
+    //display one single pokemon
+    function addListItem(element) {
+        let pokemonAll = document.querySelector('.pokemon-list');
+        let pokemonItem = document.createElement('li');
+
+        let pokemonButton = document.createElement('button');
+        pokemonButton.innerText = element.name;
+        pokemonButton.classList.add('button-class');
+        pokemonItem.appendChild(pokemonButton);
+        pokemonAll.appendChild(pokemonItem);
     }
 
     return {
         getAll,
         add,
-        filter
+        filter,
+        addListItem
     };
 })();
 
@@ -64,16 +77,17 @@ let pokemonRepository = (function () {
 // pokemonRepository.add(vv); -> why i don’t get the error message i predefined?
 
 
-// Loops through the array of pokemon and points out which ones height is <= 70
+// Loops through the function addListItem until completely trough the array
 pokemonRepository.getAll().forEach(function (element) {
-    if (element.height <= 70) {
-        document.write(`<div>${element.name}: 
-        Height: ${element.height} / 
-        Types: ${element.types} - Tiny pokemon </div>`);
+    pokemonRepository.addListItem(element);
+    // if (element.height <= 70) {
+    //     document.write(`<div>${element.name}: 
+    //     Height: ${element.height} / 
+    //     Types: ${element.types} - Tiny pokemon </div>`);
 
-    } else {
-        document.write(`<div>${element.name}: 
-        Height: ${element.height} / 
-        Types: ${element.types} </div>`);
-    }
+    // } else {
+    //     document.write(`<div>${element.name}: 
+    //     Height: ${element.height} / 
+    //     Types: ${element.types} </div>`);
+    // }
 })
