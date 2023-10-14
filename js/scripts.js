@@ -54,22 +54,32 @@ let pokemonRepository = (function () {
         }
     }
     //display one single pokemon
-    function addListItem(element) {
+    function addListItem(pokemon) {
         let pokemonAll = document.querySelector('.pokemon-list');
         let pokemonItem = document.createElement('li');
 
         let pokemonButton = document.createElement('button');
-        pokemonButton.innerText = element.name;
+        pokemonButton.innerText = pokemon.name;
         pokemonButton.classList.add('button-class');
         pokemonItem.appendChild(pokemonButton);
         pokemonAll.appendChild(pokemonItem);
+
+        pokemonButton.addEventListener('click', function(){
+            showDetails(pokemon.name);
+        });
     }
+    // will show details of pokemon when function called through click
+    function showDetails(pokemon){
+        console.log(pokemon);
+    };
+
 
     return {
         getAll,
         add,
         filter,
-        addListItem
+        addListItem,
+        showDetails
     };
 })();
 
@@ -78,8 +88,8 @@ let pokemonRepository = (function () {
 
 
 // Loops through the function addListItem until completely trough the array
-pokemonRepository.getAll().forEach(function (element) {
-    pokemonRepository.addListItem(element);
+pokemonRepository.getAll().forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
     // if (element.height <= 70) {
     //     document.write(`<div>${element.name}: 
     //     Height: ${element.height} / 
