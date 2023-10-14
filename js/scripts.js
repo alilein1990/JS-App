@@ -6,7 +6,7 @@ let pokemonRepository = (function () {
         { name: 'Ariados', height: 110, types: ['bug', ' poison'] },
         { name: 'Slowbro', height: 160, types: ['psychic', ' water'] }
     ];
-    //returns a list of all pokemon
+    //returns a list of all pokemon contained in array pokemonList
     function getAll() {
         return pokemonList;
     }
@@ -63,13 +63,18 @@ let pokemonRepository = (function () {
         pokemonButton.classList.add('button-class');
         pokemonItem.appendChild(pokemonButton);
         pokemonAll.appendChild(pokemonItem);
-
-        pokemonButton.addEventListener('click', function(){
-            showDetails(pokemon.name);
-        });
+        //call the function on click for button
+        addButtonEvent(pokemonButton, pokemon);
     }
+    //add event on click for the button, 2 parameter
+    function addButtonEvent(pokemonButton, pokemon) {
+        pokemonButton.addEventListener('click', function () {
+            showDetails(pokemon);
+        })
+    }
+
     // will show details of pokemon when function called through click
-    function showDetails(pokemon){
+    function showDetails(pokemon) {
         console.log(pokemon);
     };
 
@@ -86,8 +91,8 @@ let pokemonRepository = (function () {
 
 // pokemonRepository.add(vv); -> why i don’t get the error message i predefined?
 
-
-// Loops through the function addListItem until completely trough the array
+//call the function getAll from pokemonRepository, that returns the array
+//loop through array and perform on each object of the array the addListItem function
 pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
     // if (element.height <= 70) {
