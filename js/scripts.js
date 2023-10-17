@@ -90,9 +90,11 @@ let pokemonRepository = (function () {
     };
     // TO DO code filter funtion
     function findPokemon(name) {
+        // console.log('Input name:', name);
         name = name.toLowerCase();
 
         let foundPokemon = pokemonList.find(function (pokemon) {
+            console.log('Current pokemon name:', pokemon.name);
             return pokemon.name.toLowerCase() === name;
         });
 
