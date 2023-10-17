@@ -9,12 +9,17 @@ let pokemonRepository = (function () {
         return pokemonList;
     }
     // allows to add new pokemon to the array if it meets the needed conditions
+    // why udidentified when NAme:
     function add(pokemon) {
-        //makes sure the type is object
-        if (typeof pokemon === 'object' && 'name' in pokemon && 'detailsUrl' in pokemon) {
+
+        if (
+            typeof pokemon === 'object' &&
+            Object.keys(pokemon).some(function (key) { return key.toLowerCase() === 'name' }) &&
+            Object.keys(pokemon).some(key => key.toLowerCase() === 'detailsurl')
+        ) {
             pokemonList.push(pokemon);
         } else {
-            console.log('Wrong naming for pokemon');
+            console.log('Please use only the keys: name & detailsUrl');
         }
     }
 
@@ -84,7 +89,7 @@ let pokemonRepository = (function () {
         });
     };
     // TO DO code filter funtion
-    function searchPokemonByName(name) {
+    function findPokemon(name) {
         name = name.toLowerCase();
 
         let foundPokemon = pokemonList.find(function (pokemon) {
@@ -117,14 +122,11 @@ let pokemonRepository = (function () {
         showDetails,
         loadList,
         loadDetails,
-        searchPokemonByName
+        findPokemon
     };
 })();
 
 
-// pokemonRepository.add({name:'Test', detailsUrl:'https://pokeapi.co/api/v2/pokemon/1/'})
-// pokemonRepository.searchPokemonByName('bulbasaur');    ---> doesnt work :(
-//console.log(pokemonRepository.getAll());   ---> doesnt work :(
 
 pokemonRepository.loadList().then(function () {
     // Now the data is loaded!
@@ -132,3 +134,6 @@ pokemonRepository.loadList().then(function () {
         pokemonRepository.addListItem(pokemon);
     });
 });
+
+// pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' }); - undefined
+pokemonRepository.findPokemon('bulbasaur');
