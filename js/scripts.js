@@ -82,12 +82,10 @@ let pokemonRepository = (function () {
             hideLoadingMessage();
         });
     }
-    // pokemonRepository.findPokemon('bulbasaur');
     // will show details of pokemon when function called through click
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
             displayModal(pokemon);
-            // console.log(pokemon.imageUrl);
         });
     };
 
@@ -183,5 +181,5 @@ pokemonRepository.loadList().then(function () {
     });
 });
 
-// pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' }); - undefined
+pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' }); - undefined
 // pokemonRepository.findPokemon('bulbasaur');
