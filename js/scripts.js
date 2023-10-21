@@ -181,5 +181,7 @@ pokemonRepository.loadList().then(function () {
     });
 });
 
-pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' }); - undefined
-// pokemonRepository.findPokemon('bulbasaur');
+
+//undefined???
+pokemonRepositorykemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' }); 
+//setTimeout(pokemonRepository.findPokemon('venusaur'),5000);
