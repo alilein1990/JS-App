@@ -85,7 +85,22 @@ let pokemonRepository = (function () {
     // will show details of pokemon when function called through click
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
-            console.log(pokemon);
+
+            let pokemonList = document.querySelector('.pokemon-list');
+            let modal = document.createElement('div');
+            modal.classList.add('modal');
+
+            let titleElement = document.createElement('h1');
+            titleElement.innerText = pokemon.name;
+
+            let contentElement = document.createElement('p');
+            contentElement.innerText = pokemon.height;
+            let imageElement = document.createElement('img');
+            contentElement.innerText = text;
+
+            pokemonList.appendChild(modal);
+
+            //console.log(pokemon);
         });
     };
     // TO DO code filter funtion
