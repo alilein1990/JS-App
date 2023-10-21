@@ -86,7 +86,7 @@ let pokemonRepository = (function () {
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
 
-            let pokemonList = document.querySelector('.pokemon-list');
+            // let pokemonList = document.querySelector('#pokemon-list');
             let modal = document.createElement('div');
             modal.classList.add('modal');
 
@@ -96,11 +96,16 @@ let pokemonRepository = (function () {
             let contentElement = document.createElement('p');
             contentElement.innerText = pokemon.height;
             let imageElement = document.createElement('img');
-            contentElement.innerText = text;
+            imageElement.src = pokemon.imageUrl;
 
-            pokemonList.appendChild(modal);
+            modal.appendChild(titleElement);
+            modal.appendChild(contentElement);
+            modal.appendChild(imageElement);
 
-            //console.log(pokemon);
+            document.body.appendChild(modal);
+            // pokemonList.appendChild(modal);
+
+            // console.log(pokemon);
         });
     };
     // TO DO code filter funtion
@@ -153,4 +158,4 @@ pokemonRepository.loadList().then(function () {
 });
 
 // pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' }); - undefined
-pokemonRepository.findPokemon('bulbasaur');
+// pokemonRepository.findPokemon('bulbasaur');

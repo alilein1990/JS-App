@@ -16,6 +16,16 @@ li{
     color: green;;
 }
 
+#modal{
+    margin: auto;
+    display: inline-block;
+    box-sizing: border-box;
+    background: #fff;
+    padding: 15px;
+    width: 100%;
+    max-width: 700px;
+    text-align: left;
+}
 @media all and (max-width: 500px) {
     div{
       width: 80vw;
