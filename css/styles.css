@@ -86,27 +86,41 @@ ul {
     box-sizing: border-box;
     background: #fff;
     padding: 15px;
-
-    width: 25%;
+    display: grid;
+    position: relative;
+    width: auto; 
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
     max-width: 700px;
-    text-align: center;
 }
 
 .modal h1 {
-    text-align: center;
     text-transform: uppercase;
+    margin-top: 0px;
+    grid-column: 1; 
+
 }
 
 .modal img {
-    float: right;
-
+    justify-self: center; 
+    align-self: center;
+    width: 60%;
+    grid-column: span 2;
 }
 
 .modal p {
-    text-align: left;
+    grid-column: span 2;
+    margin-bottom: 0;
 }
 .modal button{
-
+    grid-column: 2; 
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
 }
 @media all and (max-width: 500px) {
  

@@ -96,42 +96,43 @@ let pokemonRepository = (function () {
 
         let titleElement = document.createElement('h1');
         titleElement.innerText = pokemon.name;
-
+        let closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('modal-close');
+        closeButtonElement.innerText = 'x';
+        closeButtonElement.addEventListener('click', hideModal);
         let contentElement = document.createElement('p');
         contentElement.innerText = ('Height: ' + pokemon.height);
 
         let imageElement = document.createElement('img');
         imageElement.src = pokemon.imageUrl;
 
-        let closeButtonElement = document.createElement('button');
-        closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'Close';
-        closeButtonElement.addEventListener('click', hideModal);
+
 
         modal.appendChild(titleElement);
+        modal.appendChild(closeButtonElement);
         modal.appendChild(contentElement);
         modal.appendChild(imageElement);
-        modal.appendChild(closeButtonElement);
+        
 
         modalContainer.appendChild(modal);
 
-        modalContainer.addEventListener('click', (e)=>{
+        modalContainer.addEventListener('click', (e) => {
             let target = e.target;
-          //make sure only activated when clicked on modalContainer,so when users klicks on the modal itself it will not close 
-            if(target === modalContainer){
-              hideModal();
+            //make sure only activated when clicked on modalContainer,so when users klicks on the modal itself it will not close 
+            if (target === modalContainer) {
+                hideModal();
             }
-          });
+        });
     }
     function hideModal() {
         modalContainer.classList.remove('is-visible');
     }
-    window.addEventListener('keydown', (e) =>{
-        if(e.key === 'Escape' && modalContainer.classList.contains('is-visible')){
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
             hideModal();
         }
     });
-    
+
     // TO DO code filter funtion
     function findPokemon(name) {
         // console.log('Input name:', name);
@@ -183,5 +184,5 @@ pokemonRepository.loadList().then(function () {
 
 
 //undefined???
-pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' }); 
+pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' });
 //setTimeout(pokemonRepository.findPokemon('venusaur'),5000);
