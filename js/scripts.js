@@ -183,5 +183,5 @@ pokemonRepository.loadList().then(function () {
 
 
 //undefined???
-pokemonRepositorykemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' }); 
+pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' }); 
 //setTimeout(pokemonRepository.findPokemon('venusaur'),5000);
