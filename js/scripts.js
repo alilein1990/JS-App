@@ -141,17 +141,18 @@ let pokemonRepository = (function () {
     });
 
     // TO DO code filter funtion
+  
     function findPokemon(name) {
         //console.log('Input name:', name);
         name = name.toLowerCase();
 
-        console.log('pokemonList', pokemonList);
-        console.log('pokemonList', pokemonList[0]);
-        let foundPokemon = pokemonList.map(function (pokemon) {
-            console.log('Current pokemon name:', pokemon);
-            return pokemon.name.toLowerCase() === name;
-        });
-
+        console.info(JSON.stringify(pokemonList.flat()))
+        console.log('name',name);
+        let foundPokemon = pokemonList.filter(
+            (pokemonItem) => pokemonItem.name === name
+            
+        );
+        console.log('foundPokemon', foundPokemon)
         if (foundPokemon) {
             console.log('Found:', foundPokemon);
         } else {
@@ -196,4 +197,4 @@ pokemonRepository.loadList().then(function () {
 
 //undefined???
 //pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' });
-setTimeout(pokemonRepository.findPokemon('venusaur'),5000);
+pokemonRepository.findPokemon('venusaur');
