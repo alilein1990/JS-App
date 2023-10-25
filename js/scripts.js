@@ -48,9 +48,12 @@ let pokemonRepository = (function () {
     function loadList() {
         displayLoadingMessage();
         return fetch(apiUrl).then(function (response) {
+            //console.log('response', response);
             return response.json();
         }).then(function (json) {
+           // console.log('jsom', json);
             json.results.forEach(function (item) {
+                //console.log('item', item);
                 let pokemon = {
                     name: item.name,
                     detailsUrl: item.url
@@ -96,12 +99,15 @@ let pokemonRepository = (function () {
 
         let titleElement = document.createElement('h1');
         titleElement.innerText = pokemon.name;
+        titleElement.classList.add('modal-h1');
         let closeButtonElement = document.createElement('button');
         closeButtonElement.classList.add('modal-close');
         closeButtonElement.innerText = 'x';
         closeButtonElement.addEventListener('click', hideModal);
         let contentElement = document.createElement('p');
         contentElement.innerText = ('Height: ' + pokemon.height);
+        let abilityElement = document.createElement('p');
+        abilityElement.innerText = ('Ability: ' + pokemon.abilities.map(item => item.ability.name));
 
         let imageElement = document.createElement('img');
         imageElement.src = pokemon.imageUrl;
@@ -111,6 +117,7 @@ let pokemonRepository = (function () {
         modal.appendChild(titleElement);
         modal.appendChild(closeButtonElement);
         modal.appendChild(contentElement);
+        modal.appendChild(abilityElement);
         modal.appendChild(imageElement);
         
 
@@ -135,11 +142,13 @@ let pokemonRepository = (function () {
 
     // TO DO code filter funtion
     function findPokemon(name) {
-        // console.log('Input name:', name);
+        //console.log('Input name:', name);
         name = name.toLowerCase();
 
-        let foundPokemon = pokemonList.find(function (pokemon) {
-            console.log('Current pokemon name:', pokemon.name);
+        console.log('pokemonList', pokemonList);
+        console.log('pokemonList', pokemonList[0]);
+        let foundPokemon = pokemonList.map(function (pokemon) {
+            console.log('Current pokemon name:', pokemon);
             return pokemon.name.toLowerCase() === name;
         });
 
@@ -176,13 +185,15 @@ let pokemonRepository = (function () {
 
 
 pokemonRepository.loadList().then(function () {
-    // Now the data is loaded!
+    // Now the data has loaded!
     pokemonRepository.getAll().forEach(function (pokemon) {
+        console.log('pokemon', pokemon);
         pokemonRepository.addListItem(pokemon);
+        
     });
 });
 
 
 //undefined???
-pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' });
-//setTimeout(pokemonRepository.findPokemon('venusaur'),5000);
+//pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' });
+setTimeout(pokemonRepository.findPokemon('venusaur'),5000);
