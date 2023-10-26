@@ -3,7 +3,7 @@
 ### Project description
 It is a small application that fetches data about the pokemon from an external API, displays detaills of a pokemon when clicked on the name and allows the user to search for specific pokemon by name.
 
-### Project dependencies (e.g., JavaScript version, ESLint rules)
+### Project dependencies
 In the project JS, HTML and CSS was used 
 
 ### Which API the project uses
