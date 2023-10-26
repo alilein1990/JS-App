@@ -36,6 +36,7 @@ let pokemonRepository = (function () {
         //call the function on click for button
         addButtonEvent(pokemonButton, pokemon);
     }
+
     //add event on click for the button, 2 parameter
     function addButtonEvent(pokemonButton, pokemon) {
         pokemonButton.addEventListener('click', function () {
@@ -66,6 +67,7 @@ let pokemonRepository = (function () {
             hideLoadingMessage();
         })
     }
+
     // load only image, height, type per pokemon, not the other details from the API
     function loadDetails(item) {
         //deatilsUrl comes from loadList() - is the item.url
@@ -85,6 +87,7 @@ let pokemonRepository = (function () {
             hideLoadingMessage();
         });
     }
+
     // will show details of pokemon when function called through click
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function () {
@@ -106,13 +109,15 @@ let pokemonRepository = (function () {
         closeButtonElement.addEventListener('click', hideModal);
         let contentElement = document.createElement('p');
         contentElement.innerText = ('Height: ' + pokemon.height);
+
         let abilityElement = document.createElement('p');
-        abilityElement.innerText = ('Ability: ' + pokemon.abilities.map(item => item.ability.name));
+        
+        //same problem as with filter ...
+        let abilitiesPokemon = pokemon.abilities.map(ability => ability.ability.name)
+        abilityElement.innerText = ('Ability: ' + abilitiesPokemon);
 
         let imageElement = document.createElement('img');
         imageElement.src = pokemon.imageUrl;
-
-
 
         modal.appendChild(titleElement);
         modal.appendChild(closeButtonElement);
@@ -120,7 +125,6 @@ let pokemonRepository = (function () {
         modal.appendChild(abilityElement);
         modal.appendChild(imageElement);
         
-
         modalContainer.appendChild(modal);
 
         modalContainer.addEventListener('click', (e) => {
@@ -131,28 +135,28 @@ let pokemonRepository = (function () {
             }
         });
     }
+
     function hideModal() {
         modalContainer.classList.remove('is-visible');
     }
+
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
             hideModal();
         }
     });
 
-    // TO DO code filter funtion
-  
+    // TO DO code find funtion
     function findPokemon(name) {
         //console.log('Input name:', name);
         name = name.toLowerCase();
 
-        console.info(JSON.stringify(pokemonList.flat()))
-        console.log('name',name);
+        //console.info(JSON.stringify(pokemonList.flat()))
+        // // console.log('name',name);
         let foundPokemon = pokemonList.filter(
             (pokemonItem) => pokemonItem.name === name
             
         );
-        console.log('foundPokemon', foundPokemon)
         if (foundPokemon) {
             console.log('Found:', foundPokemon);
         } else {
@@ -172,6 +176,7 @@ let pokemonRepository = (function () {
         let messageElement = document.querySelector('.load-message');
         document.body.removeChild(messageElement);
     }
+
     return {
         getAll,
         add,
@@ -183,17 +188,14 @@ let pokemonRepository = (function () {
     };
 })();
 
-
-
 pokemonRepository.loadList().then(function () {
     // Now the data has loaded!
     pokemonRepository.getAll().forEach(function (pokemon) {
-        console.log('pokemon', pokemon);
+        // console.log('pokemon', pokemon);
         pokemonRepository.addListItem(pokemon);
         
     });
 });
-
 
 //undefined???
 //pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' });
