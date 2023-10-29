@@ -9,46 +9,13 @@ let pokemonRepository = (function () {
         return pokemonList;
     }
 
-    function lowercaseKeys(obj) {
-        const newObject = {};
-
-        Object.keys(obj).forEach(key => {
-            newObject[key.toLowerCase()] = obj[key];
-        });
-
-        return newObject;
-    }
     // allows to add new pokemon to the array if it meets the needed conditions
-    // why udidentified when NAme:
     function add(pokemon) {
-        let pokemonLowerCase = lowercaseKeys(pokemon);
-        if (
-            typeof pokemon === 'object' &&
-            Object.keys(pokemon).some(function (key) { return key.toLowerCase() === 'name' }) &&
-            Object.keys(pokemon).some(key => key.toLowerCase() === 'detailsurl')
-        ) {
-            pokemonList.push(pokemonLowerCase);
-
+        if (typeof pokemon === 'object' && 'name' in pokemon && 'detailsUrl' in pokemon) {
+            pokemonList.push(pokemon);
         } else {
             console.log('Please use only the keys: name & detailsurl');
         }
-    }
-
-    //display one single pokemon
-    function addListItem(pokemon) {
-        let pokemonAll = document.querySelector('.pokemon-list');
-        let pokemonItem = document.createElement('li');
-        pokemonItem.classList.add('list-group-item');
-        let pokemonButton = document.createElement('button');
-
-        pokemonButton.innerText = pokemon.name;
-        pokemonButton.classList.add('button-class');
-        pokemonButton.setAttribute('data-toggle', 'modal');
-        pokemonButton.setAttribute('data-target', '#pokemonModal');
-        pokemonItem.appendChild(pokemonButton);
-        pokemonAll.appendChild(pokemonItem);
-        //call the function on click for button
-        addButtonEvent(pokemonButton, pokemon);
     }
 
     //add event on click for the button, 2 parameter
@@ -62,12 +29,9 @@ let pokemonRepository = (function () {
     function loadList() {
         displayLoadingMessage();
         return fetch(apiUrl).then(function (response) {
-            //console.log('response', response);
             return response.json();
         }).then(function (json) {
-            // console.log('jsom', json);
             json.results.forEach(function (item) {
-                //console.log('item', item);
                 let pokemon = {
                     name: item.name,
                     detailsUrl: item.url
@@ -85,7 +49,7 @@ let pokemonRepository = (function () {
     function loadDetails(item) {
         //deatilsUrl comes from loadList() - is the item.url
         displayLoadingMessage();
-        let url = item.detailsurl;
+        let url = item.detailsUrl;
 
         return fetch(url).then(function (response) {
             // console.log('resp',reponse);
@@ -97,6 +61,8 @@ let pokemonRepository = (function () {
             // Now we add the details to the item
             //spirites & front_default defined in the API itselfs, as url was 
             item.imageUrl = details.sprites.front_default;
+            console.log('item.imageUrl in loadDetails:', item.imageUrl);
+
             item.height = details.height;
             item.types = details.types;
             hideLoadingMessage();
@@ -113,6 +79,37 @@ let pokemonRepository = (function () {
         });
     };
 
+        //display one single pokemon
+        function addListItem(pokemon) {
+            loadDetails(pokemon).then (function(){
+            let pokemonAll = document.querySelector('.pokemon-list');
+            let pokemonItem = document.createElement('li');
+            pokemonItem.classList.add('list-group-item');
+    
+            let pokemonButton = document.createElement('button');
+            pokemonButton.innerText = pokemon.name;
+            pokemonButton.classList.add('button-class');
+            pokemonButton.setAttribute('data-toggle', 'modal');
+            pokemonButton.setAttribute('data-target', '#pokemonModal');
+            let height = document.createElement('p');
+            height.innerText = pokemon.height;
+
+
+    
+            let imageElement = document.createElement('img');
+            imageElement.src = pokemon.imageUrl;
+            imageElement.alt = 'Pokemon image';
+            // console.log('img', imageElement);
+            // console.log('pokemon', pokemon);
+            
+            pokemonButton.appendChild(imageElement);
+            pokemonItem.appendChild(pokemonButton);
+            pokemonAll.appendChild(pokemonItem);
+            //call the function on click for button
+            addButtonEvent(pokemonButton, pokemon);
+            })
+        }
+    
     function displayModal(pokemon) {
         let modalTitle = document.querySelector('.modal-title')
         let modalBody = document.querySelector('.modal-body')
@@ -122,6 +119,7 @@ let pokemonRepository = (function () {
         modalTitle.innerText = pokemon.name;
         let imageElement = document.createElement('img');
         imageElement.src = pokemon.imageUrl;
+        console.log('img2', imageElement)
         let contentElement = document.createElement('p');
         contentElement.innerText = ('Height: ' + pokemon.height);
 
@@ -185,5 +183,3 @@ pokemonRepository.loadList().then(function () {
     });
     // pokemonRepository.findPokemon(name).addEventListener('keyup',);
 });
-
-pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' });

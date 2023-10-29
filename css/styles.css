@@ -43,10 +43,9 @@ input.form-control:focus {
     border-color: inherit;
     box-shadow: none;
 }
-.form-control{
+#searchInput{
     font-family: 'Rubik', sans-serif;
-    width: 50%;
-    right: 10px;
+    width: 60%;
 }
 .btn{
     font-family: 'Rubik', sans-serif;
@@ -54,6 +53,12 @@ input.form-control:focus {
 }
 .btn:focus{
     box-shadow: none;
+}
+main {
+    background-image: url("../img/grass_with_river_background_by_willdinomaster55_df0dwcb-pre.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 .modal-dialog {
     margin: 15% auto;
