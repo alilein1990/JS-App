@@ -3,23 +3,34 @@ let pokemonRepository = (function () {
 
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-    let modalContainer = document.querySelector('.modal-container');
+    let modalContainer = document.querySelector('#pokemonModal');
     //returns a list of all pokemon contained in array pokemonList
     function getAll() {
         return pokemonList;
     }
+
+    function lowercaseKeys(obj) {
+        const newObject = {};
+      
+        Object.keys(obj).forEach(key => {
+          newObject[key.toLowerCase()] = obj[key];
+        });
+      
+        return newObject;
+      }
     // allows to add new pokemon to the array if it meets the needed conditions
     // why udidentified when NAme:
     function add(pokemon) {
-
+        let pokemonLowerCase = lowercaseKeys(pokemon);
         if (
             typeof pokemon === 'object' &&
             Object.keys(pokemon).some(function (key) { return key.toLowerCase() === 'name' }) &&
             Object.keys(pokemon).some(key => key.toLowerCase() === 'detailsurl')
         ) {
-            pokemonList.push(pokemon);
+            pokemonList.push(pokemonLowerCase);
+
         } else {
-            console.log('Please use only the keys: name & detailsUrl');
+            console.log('Please use only the keys: name & detailsurl');
         }
     }
 
@@ -27,10 +38,13 @@ let pokemonRepository = (function () {
     function addListItem(pokemon) {
         let pokemonAll = document.querySelector('.pokemon-list');
         let pokemonItem = document.createElement('li');
+        pokemonItem.classList.add('list-group-item');
         let pokemonButton = document.createElement('button');
 
         pokemonButton.innerText = pokemon.name;
         pokemonButton.classList.add('button-class');
+        pokemonButton.setAttribute('data-toggle', 'modal'); 
+        pokemonButton.setAttribute('data-target', '#pokemonModal');
         pokemonItem.appendChild(pokemonButton);
         pokemonAll.appendChild(pokemonItem);
         //call the function on click for button
@@ -40,7 +54,6 @@ let pokemonRepository = (function () {
     //add event on click for the button, 2 parameter
     function addButtonEvent(pokemonButton, pokemon) {
         pokemonButton.addEventListener('click', function () {
-            modalContainer.classList.add('is-visible')
             showDetails(pokemon);
         })
     }
@@ -72,10 +85,15 @@ let pokemonRepository = (function () {
     function loadDetails(item) {
         //deatilsUrl comes from loadList() - is the item.url
         displayLoadingMessage();
-        let url = item.detailsUrl;
+        let url = item.detailsurl;
+        
         return fetch(url).then(function (response) {
+            // console.log('resp',reponse);
+            
             return response.json();
+
         }).then(function (details) {
+
             // Now we add the details to the item
             //spirites & front_default defined in the API itselfs, as url was 
             item.imageUrl = details.sprites.front_default;
@@ -83,7 +101,7 @@ let pokemonRepository = (function () {
             item.types = details.types;
             hideLoadingMessage();
         }).catch(function (e) {
-            console.error(e);
+            console.trace(e);
             hideLoadingMessage();
         });
     }
@@ -96,63 +114,36 @@ let pokemonRepository = (function () {
     };
 
     function displayModal(pokemon) {
-        modalContainer.innerText = '';
-        let modal = document.createElement('div');
-        modal.classList.add('modal');
+        let modalTitle = document.querySelector('.modal-title')
+        let modalBody = document.querySelector('.modal-body')
 
-        let titleElement = document.createElement('h1');
-        titleElement.innerText = pokemon.name;
-        titleElement.classList.add('modal-h1');
-        let closeButtonElement = document.createElement('button');
-        closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'x';
-        closeButtonElement.addEventListener('click', hideModal);
+        modalTitle.innerText = '';
+        modalBody.innerText = '';
+        modalTitle.innerText = pokemon.name;
+
         let contentElement = document.createElement('p');
         contentElement.innerText = ('Height: ' + pokemon.height);
 
-        let abilityElement = document.createElement('p');
+        // let abilityElement = document.createElement('p');
         
-        //same problem as with filter ...
-        let abilitiesPokemon = pokemon.abilities.map(ability => ability.ability.name)
-        abilityElement.innerText = ('Ability: ' + abilitiesPokemon);
+        // let abilitiesPokemon = pokemon.abilities.map(ability => ability.ability.name)
+        // console.log('abilit', abilitiesPokemon)
+        // abilityElement.innerText = ('Ability: ' + abilitiesPokemon);
 
         let imageElement = document.createElement('img');
         imageElement.src = pokemon.imageUrl;
 
-        modal.appendChild(titleElement);
-        modal.appendChild(closeButtonElement);
-        modal.appendChild(contentElement);
-        modal.appendChild(abilityElement);
-        modal.appendChild(imageElement);
-        
-        modalContainer.appendChild(modal);
 
-        modalContainer.addEventListener('click', (e) => {
-            let target = e.target;
-            //make sure only activated when clicked on modalContainer,so when users klicks on the modal itself it will not close 
-            if (target === modalContainer) {
-                hideModal();
-            }
-        });
+        modalBody.appendChild(contentElement);
+        // modalBody.appendChild(abilityElement);
+        modalBody.appendChild(imageElement);
     }
-
-    function hideModal() {
-        modalContainer.classList.remove('is-visible');
-    }
-
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-            hideModal();
-        }
-    });
 
     // TO DO code find funtion
     function findPokemon(name) {
-        //console.log('Input name:', name);
+
         name = name.toLowerCase();
 
-        //console.info(JSON.stringify(pokemonList.flat()))
-        // // console.log('name',name);
         let foundPokemon = pokemonList.filter(
             (pokemonItem) => pokemonItem.name === name
             
@@ -162,6 +153,7 @@ let pokemonRepository = (function () {
         } else {
             console.log('Pokemon not found');
         }
+
     }
 
     function displayLoadingMessage() {
@@ -195,8 +187,7 @@ pokemonRepository.loadList().then(function () {
         pokemonRepository.addListItem(pokemon);
         
     });
+    // pokemonRepository.findPokemon(name).addEventListener('keyup',);
 });
 
-//undefined???
-//pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' });
-pokemonRepository.findPokemon('venusaur');
+pokemonRepository.add({ Name: 'PEp', detailsUrl: 'https://pokeapi.co/api/v2/pokemon/1/' });

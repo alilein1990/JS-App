@@ -4,9 +4,10 @@
     --third-color: rgb(65, 226, 247);
 }
 
-body{
-    width: 100vw;
+body {
+    box-sizing: border-box;
 }
+
 * {
     font-family: 'Rubik', sans-serif;
 }
@@ -17,32 +18,12 @@ body{
     text-align: center;
 }
 
-ul,
-li {
-    list-style: none;
-    margin: 10px auto;
+
+ul,li {
+
+    margin: 5px auto;
     width: 400px;
-    justify-content: center;
 }
-
-ul {
-    border: 2px solid var(--primary-color);
-    border-radius: 15px;
-}
-
-li:first-child {
-    margin-top: 0px;
-}
-
-li:last-child {
-    margin-bottom: 0px;
-}
-
-ul {
-    padding-inline-start: 0;
-    padding: 10px;
-}
-
 .button-class {
     color: black;
     height: 100%;
@@ -62,86 +43,35 @@ ul {
     opacity: 0.8;
     transform: scale(1.03);
 }
+/* .modal{
+    height: 100vh;
+    width: 100vw;
+} */
 
-.modal-container {
-    display: none;
+ .modal-dialog {
+    margin: 10% auto;
 }
 
-.modal-container.is-visible {
-    position: fixed;
-    padding: 20px;
-    box-sizing: border-box;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-    /* to show it above other content */
-    z-index: 10;
-    background: rgba(0, 0, 0, 0.5);
-    /* to allow scrolling if the screen is not high enough*/
-    overflow: auto;
-
-    /* this is used to center the modal */
-    display: grid;
-    text-align: center;
-}
-
-.modal {
-    margin: auto;
-    display: inline-block;
-    box-sizing: border-box;
-    background: #fff;
-    padding: 15px;
-    display: grid;
-    position: relative;
-    width: 400px;
-    grid-template-columns: 90% 10%;
-    align-items: center;
-    max-width: 700px;
-}
-
-.modal-h1{
+.modal-title{
     text-transform: uppercase;
-    margin-top: 0px;
-    grid-column: 1;
-    text-align: left;
 }
 
-.modal img {
-    justify-self: center;
-    align-self: center;
-    width: 60%;
-    grid-column: span 2;
-}
+/* .modal-dialog img {
+    width: 40%;
+ 
+} */
 
-.modal p {
+/* .modal-dialog p {
     grid-column: span 2;
     margin-bottom: 0;
-}
-
-.modal button {
-    grid-column: 2;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-}
+}  */
 
 @media all and (max-width: 500px) {
 
-    .modal {
-        width: 300px;
-    }
 
 }
 
 @media all and (min-width: 500px) and (max-width: 750px) {
 
-    .modal {
-        width: 350px;
-    }
+
 }
