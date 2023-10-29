@@ -82,7 +82,7 @@ let pokemonRepository = (function () {
             loadDetails(pokemon).then (function(){
             let pokemonAll = document.querySelector('.pokemon-list');
             let pokemonItem = document.createElement('div');
-            pokemonItem.classList.add('col-6','col-md-3', 'col-sm-4','mb-3', 'px-sm-1');
+            pokemonItem.classList.add('col-6','col-md-3', 'col-sm-4','mb-3', );
     
             let pokemonButton = document.createElement('button');
             pokemonButton.innerText = pokemon.name;
