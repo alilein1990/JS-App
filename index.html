@@ -15,24 +15,24 @@
 </head>
 
 <body>
-  <!-- navigation -->
-  <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
-    <a class="navbar-brand" href="#"></a>
-    <img src="https://1000marken.net/wp-content/uploads/2021/01/logo-Pokemon.png" height="100"
-      class="d-inline-block align-top img-pokemon" alt="">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <input type="text" id="searchInput" class="nav-item form-control custom-input">
-        <button onclick="search()"  class="btn btn-warning">Search</button> 
-        <div id="results"></div>
-      </ul>
-    </div>
-  </nav>
-  <div>
+    <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
+      <img src="https://1000marken.net/wp-content/uploads/2021/01/logo-Pokemon.png" height="80"
+        class="d-inline-block align-top img-pokemon" alt="">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        
+      </button>
+      <div class="collapse navbar-collapse input-div">
+        <form class=" form-inline ml-auto">
+          <input type="text" id="searchInput" class="nav-item form-control custom-input">
+          <button onclick="findPokemon()" class="btn btn-warning">Search</button>
+          <div id="results"></div>
+        </form>
+      </div>
+    </nav>
+
+  <main>
     <ul class="pokemon-list list-group"></ul>
 
     <!-- Modal -->
@@ -50,9 +50,8 @@
         </div>
       </div>
     </div>
-  </div>
 
-
+  </main>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
