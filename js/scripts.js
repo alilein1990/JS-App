@@ -3,7 +3,6 @@ let pokemonRepository = (function () {
 
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-    let modalContainer = document.querySelector('#pokemonModal');
     //returns a list of all pokemon contained in array pokemonList
     function getAll() {
         return pokemonList;
@@ -61,7 +60,6 @@ let pokemonRepository = (function () {
             // Now we add the details to the item
             //spirites & front_default defined in the API itselfs, as url was 
             item.imageUrl = details.sprites.front_default;
-            console.log('item.imageUrl in loadDetails:', item.imageUrl);
 
             item.height = details.height;
             item.types = details.types;
@@ -83,24 +81,18 @@ let pokemonRepository = (function () {
         function addListItem(pokemon) {
             loadDetails(pokemon).then (function(){
             let pokemonAll = document.querySelector('.pokemon-list');
-            let pokemonItem = document.createElement('li');
-            pokemonItem.classList.add('list-group-item');
+            let pokemonItem = document.createElement('div');
+            pokemonItem.classList.add('col-6','col-md-3', 'col-sm-4','mb-3', 'px-sm-1');
     
             let pokemonButton = document.createElement('button');
             pokemonButton.innerText = pokemon.name;
             pokemonButton.classList.add('button-class');
             pokemonButton.setAttribute('data-toggle', 'modal');
             pokemonButton.setAttribute('data-target', '#pokemonModal');
-            let height = document.createElement('p');
-            height.innerText = pokemon.height;
-
-
-    
+  
             let imageElement = document.createElement('img');
             imageElement.src = pokemon.imageUrl;
             imageElement.alt = 'Pokemon image';
-            // console.log('img', imageElement);
-            // console.log('pokemon', pokemon);
             
             pokemonButton.appendChild(imageElement);
             pokemonItem.appendChild(pokemonButton);
@@ -136,7 +128,6 @@ let pokemonRepository = (function () {
 
     // TO DO code find funtion
     function findPokemon(name) {
-
         name = name.toLowerCase();
 
         let foundPokemon = pokemonList.filter(
