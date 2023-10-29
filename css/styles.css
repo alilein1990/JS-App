@@ -12,18 +12,13 @@ body {
     font-family: 'Rubik', sans-serif;
 }
 
-.title {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-}
-
-
-ul,li {
+ul,
+li {
 
     margin: 5px auto;
     width: 400px;
 }
+
 .button-class {
     color: black;
     height: 100%;
@@ -43,23 +38,36 @@ ul,li {
     opacity: 0.8;
     transform: scale(1.03);
 }
-/* .modal{
-    height: 100vh;
-    width: 100vw;
-} */
 
- .modal-dialog {
-    margin: 10% auto;
+input.form-control:focus {
+    border-color: inherit;
+    box-shadow: none;
+}
+.form-control{
+    font-family: 'Rubik', sans-serif;
+    width: 50%;
+    right: 10px;
+}
+.btn{
+    font-family: 'Rubik', sans-serif;
+    right: 5px;
+}
+.btn:focus{
+    box-shadow: none;
+}
+.modal-dialog {
+    margin: 15% auto;
+    width: 450px;
 }
 
-.modal-title{
+.modal-title {
     text-transform: uppercase;
 }
 
-/* .modal-dialog img {
+.modal-dialog img {
     width: 40%;
- 
-} */
+
+}
 
 /* .modal-dialog p {
     grid-column: span 2;
@@ -67,11 +75,17 @@ ul,li {
 }  */
 
 @media all and (max-width: 500px) {
-
-
+    .modal-dialog {
+        width: 300px;
+    }
+    .img-pokemon{
+        height: 60px;
+    }
 }
 
 @media all and (min-width: 500px) and (max-width: 750px) {
-
+    .modal-dialog {
+        width: 300px;
+    }
 
 }

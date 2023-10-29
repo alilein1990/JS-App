@@ -11,13 +11,13 @@ let pokemonRepository = (function () {
 
     function lowercaseKeys(obj) {
         const newObject = {};
-      
+
         Object.keys(obj).forEach(key => {
-          newObject[key.toLowerCase()] = obj[key];
+            newObject[key.toLowerCase()] = obj[key];
         });
-      
+
         return newObject;
-      }
+    }
     // allows to add new pokemon to the array if it meets the needed conditions
     // why udidentified when NAme:
     function add(pokemon) {
@@ -43,7 +43,7 @@ let pokemonRepository = (function () {
 
         pokemonButton.innerText = pokemon.name;
         pokemonButton.classList.add('button-class');
-        pokemonButton.setAttribute('data-toggle', 'modal'); 
+        pokemonButton.setAttribute('data-toggle', 'modal');
         pokemonButton.setAttribute('data-target', '#pokemonModal');
         pokemonItem.appendChild(pokemonButton);
         pokemonAll.appendChild(pokemonItem);
@@ -65,7 +65,7 @@ let pokemonRepository = (function () {
             //console.log('response', response);
             return response.json();
         }).then(function (json) {
-           // console.log('jsom', json);
+            // console.log('jsom', json);
             json.results.forEach(function (item) {
                 //console.log('item', item);
                 let pokemon = {
@@ -86,10 +86,10 @@ let pokemonRepository = (function () {
         //deatilsUrl comes from loadList() - is the item.url
         displayLoadingMessage();
         let url = item.detailsurl;
-        
+
         return fetch(url).then(function (response) {
             // console.log('resp',reponse);
-            
+
             return response.json();
 
         }).then(function (details) {
@@ -120,19 +120,16 @@ let pokemonRepository = (function () {
         modalTitle.innerText = '';
         modalBody.innerText = '';
         modalTitle.innerText = pokemon.name;
-
+        let imageElement = document.createElement('img');
+        imageElement.src = pokemon.imageUrl;
         let contentElement = document.createElement('p');
         contentElement.innerText = ('Height: ' + pokemon.height);
 
         // let abilityElement = document.createElement('p');
-        
+
         // let abilitiesPokemon = pokemon.abilities.map(ability => ability.ability.name)
         // console.log('abilit', abilitiesPokemon)
         // abilityElement.innerText = ('Ability: ' + abilitiesPokemon);
-
-        let imageElement = document.createElement('img');
-        imageElement.src = pokemon.imageUrl;
-
 
         modalBody.appendChild(contentElement);
         // modalBody.appendChild(abilityElement);
@@ -146,7 +143,7 @@ let pokemonRepository = (function () {
 
         let foundPokemon = pokemonList.filter(
             (pokemonItem) => pokemonItem.name === name
-            
+
         );
         if (foundPokemon) {
             console.log('Found:', foundPokemon);
@@ -183,9 +180,8 @@ let pokemonRepository = (function () {
 pokemonRepository.loadList().then(function () {
     // Now the data has loaded!
     pokemonRepository.getAll().forEach(function (pokemon) {
-        // console.log('pokemon', pokemon);
         pokemonRepository.addListItem(pokemon);
-        
+
     });
     // pokemonRepository.findPokemon(name).addEventListener('keyup',);
 });
