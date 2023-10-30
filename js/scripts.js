@@ -172,13 +172,28 @@ function findPokemon() {
     });
 
     var inputValue = document.querySelector('#searchInput').value.toUpperCase();
+    var matchFound = false;
+
     for (let i = 0; i < divsPokemon.length; i++){
         var divNameText = divsPokemon[i].querySelector('.div-name').innerText;
         if(divNameText.indexOf(inputValue) > -1){
             divsPokemon[i].style.display = '';
+            matchFound = true; 
         }else{
             divsPokemon[i].style.display = 'none';
         }
+    }
+    var existingErrorMessage = document.querySelector('.no-pokemon-message');
+    if (existingErrorMessage) {
+        existingErrorMessage.remove();
+    }
+
+    if (!matchFound) {
+        var main = document.querySelector('main');
+        var noPokemon = document.createElement('h2');
+        noPokemon.classList.add('no-pokemon-message');
+        noPokemon.innerText = 'No Pokemon Matches The Search, Please Try Again. :)';
+        main.appendChild(noPokemon);
     }
     document.querySelector('#searchInput').value = '';
 }
