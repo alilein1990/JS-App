@@ -15,8 +15,11 @@ body.modal-open .modal {
     font-family: 'Rubik', sans-serif;
 }
 
+.element.style{
+    padding: 0;
+}
 main {
-    margin: auto;
+    margin: 0;
     padding-left: 120px;
     padding-right: 120px;
     padding-top: 5px;
@@ -38,15 +41,15 @@ main {
     margin: none;
     opacity: 0.95;
     text-transform: uppercase;
-    transition: 0.3s ease;
+     transition: 0.4s ease; 
 }
 
 .button-class:hover {
     background-color: var(--primary-color);
     border: 2px solid var(--third-color);;
-    box-shadow: 0 0 15px rgba(65, 226, 247, 0.7); 
+    /* box-shadow: 0 0 15px rgba(65, 226, 247, 0.7);  */
     opacity: 0.8;
-    transform: scale(1.03);
+    transform: scale(1.04);
 }
 .button-class:focus{
     outline: none;
@@ -103,7 +106,7 @@ input.form-control:focus {
     }
 }
 
-@media all and (min-width: 500px) and (max-width: 750px) {
+@media all and (min-width: 500px) and (max-width: 862px) {
     main {
         padding-left: 40px;
         padding-right: 40px;
