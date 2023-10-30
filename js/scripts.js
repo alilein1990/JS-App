@@ -208,16 +208,3 @@ document.querySelector('#searchInput').addEventListener('keydown', function(even
     }
 });
 
-//  async function findPokemon() {
-//     await pokemonRepository.loadList();
-//     let inputValue = document.querySelector('#searchInput').value.toLowerCase();
-
-//     let founPokemon = pokemonRepository.getPokemonList().filter((pokemon)=> {
-//         return pokemon.name.toLowerCase().includes(inputValue);
-//     })
-//     if (founPokemon) {
-//         console.log('found', founPokemon);
-//     } else {
-//         console.log('nothing');
-//     }
-// }
