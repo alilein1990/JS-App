@@ -25,7 +25,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <form class=" form-inline ml-auto">
-          <input type="text" id="searchInput" class="nav-item form-control custom-input">
+          <input type="text" id="searchInput" class="nav-item form-control custom-input" aria-label="Searchbar for a Pokemon">
+    
           <button onclick="findPokemon()" class="btn btn-warning">Search</button>
           <div id="results"></div>
         </form>
@@ -63,6 +64,7 @@
     crossorigin="anonymous"></script>
   <script src="js/promise-polyfill.js"></script>
   <script src="js/fetch.umd.js"></script>
+  <script src="js/tota11y.min.js"></script>
   <script src="js/scripts.js"></script>
 </body>
 

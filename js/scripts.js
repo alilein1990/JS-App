@@ -82,18 +82,20 @@ let pokemonRepository = (function () {
             loadDetails(pokemon).then (function(){
             let pokemonAll = document.querySelector('.pokemon-list');
             let pokemonItem = document.createElement('div');
+            pokemonItem.classList.add('button-div');
             pokemonItem.classList.add('col-6','col-md-3', 'col-sm-4','mb-3', );
     
             let pokemonButton = document.createElement('button');
-            pokemonButton.innerText = pokemon.name;
             pokemonButton.classList.add('button-class');
             pokemonButton.setAttribute('data-toggle', 'modal');
             pokemonButton.setAttribute('data-target', '#pokemonModal');
+            let nameElement = document.createElement('div');
+            nameElement.innerText = pokemon.name;
   
             let imageElement = document.createElement('img');
             imageElement.src = pokemon.imageUrl;
-            imageElement.alt = 'Pokemon image';
-            
+            imageElement.alt = ('A picture of ' + pokemon.name);
+            pokemonButton.appendChild(nameElement);
             pokemonButton.appendChild(imageElement);
             pokemonItem.appendChild(pokemonButton);
             pokemonAll.appendChild(pokemonItem);
