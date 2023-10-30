@@ -129,15 +129,15 @@ let pokemonRepository = (function () {
         typeElement.innerText = 'Types: ' + typePokemon.map(ability => ability.charAt(0).toUpperCase() + ability.slice(1));;
 
         modalBody.appendChild(contentElement);
-        modalBody.appendChild(abilityElement);
         modalBody.appendChild(typeElement);
+        modalBody.appendChild(abilityElement);
         modalBody.appendChild(imageElement);
     }
 
     function displayLoadingMessage() {
-        let messageElement = document.createElement('div');
+        let messageElement = document.createElement('h2');
         messageElement.classList.add('load-message');
-        messageElement.innerHTML = 'The pokemon are loading...';
+        messageElement.innerHTML = 'The List Is Loading...';
         document.body.appendChild(messageElement);
         return messageElement;
     }
@@ -154,7 +154,8 @@ let pokemonRepository = (function () {
         showDetails,
         loadList,
         loadDetails,
-        getPokemonList
+        getPokemonList,
+        displayLoadingMessage
     };
 })();
 
@@ -194,7 +195,7 @@ function findPokemon() {
         var main = document.querySelector('main');
         var noPokemon = document.createElement('h2');
         noPokemon.classList.add('no-pokemon-message');
-        noPokemon.innerText = 'No Pokemon Matches The Search, Please Try Again. :)';
+        noPokemon.innerText = 'No Pokemon Matches The Search, Please Try Again. 😃';
         main.appendChild(noPokemon);
     }
     document.querySelector('#searchInput').value = '';
