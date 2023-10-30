@@ -118,16 +118,16 @@ let pokemonRepository = (function () {
         imageElement.src = pokemon.imageUrl;
         console.log('img2', imageElement)
         let contentElement = document.createElement('p');
-        contentElement.innerText = ('Height: ' + pokemon.height);
+        contentElement.innerText = 'Height: ' + pokemon.height;
 
         let abilityElement = document.createElement('p');
         let abilitiesPokemon = pokemon.abilities.map(ability => ability.ability.name)
-        abilityElement.innerText = ('Ability: ' + abilitiesPokemon);
+        abilityElement.innerText = 'Abilities: ' + abilitiesPokemon.map(ability => ability.charAt(0).toUpperCase() + ability.slice(1));;
 
         let typeElement = document.createElement('p');
         let typePokemon = pokemon.types.map(type => type.type.name)
-        typeElement.innerText = ('Types: ' + typePokemon);
-        
+        typeElement.innerText = 'Types: ' + typePokemon.map(ability => ability.charAt(0).toUpperCase() + ability.slice(1));;
+
         modalBody.appendChild(contentElement);
         modalBody.appendChild(abilityElement);
         modalBody.appendChild(typeElement);
@@ -154,7 +154,6 @@ let pokemonRepository = (function () {
         showDetails,
         loadList,
         loadDetails,
-        findPokemon,
         getPokemonList
     };
 })();
@@ -168,7 +167,6 @@ pokemonRepository.loadList().then(function () {
 });
 
 function findPokemon() {
-    // event.preventDefault(); 
     var divsPokemon = document.querySelectorAll('.button-div');
     divsPokemon.forEach(function(div) {
         div.style.display = '';
@@ -176,7 +174,7 @@ function findPokemon() {
 
     var inputValue = document.querySelector('#searchInput').value.toUpperCase();
     var matchFound = false;
-
+    //looks through all the text inside the divs for the match with the input
     for (let i = 0; i < divsPokemon.length; i++){
         var divNameText = divsPokemon[i].querySelector('.div-name').innerText;
         if(divNameText.indexOf(inputValue) > -1){
@@ -186,11 +184,12 @@ function findPokemon() {
             divsPokemon[i].style.display = 'none';
         }
     }
+    //removes errorMessage
     var existingErrorMessage = document.querySelector('.no-pokemon-message');
     if (existingErrorMessage) {
         existingErrorMessage.remove();
     }
-
+    //displays message when no match found
     if (!matchFound) {
         var main = document.querySelector('main');
         var noPokemon = document.createElement('h2');
@@ -200,13 +199,13 @@ function findPokemon() {
     }
     document.querySelector('#searchInput').value = '';
 }
+
 document.querySelector('#searchButton').addEventListener('click', findPokemon);
 document.querySelector('#searchInput').addEventListener('keydown', function(event) {
     if (event.key === 'Enter'){
         findPokemon();
     }
 });
-
 
 //  async function findPokemon() {
 //     await pokemonRepository.loadList();
@@ -216,7 +215,7 @@ document.querySelector('#searchInput').addEventListener('keydown', function(even
 //         return pokemon.name.toLowerCase().includes(inputValue);
 //     })
 //     if (founPokemon) {
-//         console.log('found', founPokemon.name);
+//         console.log('found', founPokemon);
 //     } else {
 //         console.log('nothing');
 //     }

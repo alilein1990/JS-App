@@ -78,7 +78,7 @@ input.form-control:focus {
     margin: 15% auto;
     width: 450px;
 }
-.no-pokemon-message{
+.no-pokemon-message, .load-message {
     position: absolute;
     top: 50%;
     left: 50%;
