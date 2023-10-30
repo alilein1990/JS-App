@@ -90,7 +90,7 @@ let pokemonRepository = (function () {
             // Now we add the details to the item
             //spirites & front_default defined in the API itselfs, as url was 
             item.imageUrl = details.sprites.front_default;
-
+            item.abilities = details.abilities;
             item.height = details.height;
             item.types = details.types;
             hideLoadingMessage();
@@ -120,14 +120,17 @@ let pokemonRepository = (function () {
         let contentElement = document.createElement('p');
         contentElement.innerText = ('Height: ' + pokemon.height);
 
-        // let abilityElement = document.createElement('p');
+        let abilityElement = document.createElement('p');
+        let abilitiesPokemon = pokemon.abilities.map(ability => ability.ability.name)
+        abilityElement.innerText = ('Ability: ' + abilitiesPokemon);
 
-        // let abilitiesPokemon = pokemon.abilities.map(ability => ability.ability.name)
-        // console.log('abilit', abilitiesPokemon)
-        // abilityElement.innerText = ('Ability: ' + abilitiesPokemon);
-
+        let typeElement = document.createElement('p');
+        let typePokemon = pokemon.types.map(type => type.type.name)
+        typeElement.innerText = ('Types: ' + typePokemon);
+        
         modalBody.appendChild(contentElement);
-        // modalBody.appendChild(abilityElement);
+        modalBody.appendChild(abilityElement);
+        modalBody.appendChild(typeElement);
         modalBody.appendChild(imageElement);
     }
 
