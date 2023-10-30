@@ -18,16 +18,19 @@ body.modal-open .modal {
 .element.style{
     padding: 0;
 }
-main {
-    margin: 0;
+main{
     padding-left: 120px;
     padding-right: 120px;
     padding-top: 5px;
+}
+body, html {
+    height: 100%;
+    margin: 0;
     background-image: url("../img/grass_with_river_background_by_willdinomaster55_df0dwcb-pre.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-clip: padding-box;
+
 }
 
 .button-class {
