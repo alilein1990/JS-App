@@ -8,8 +8,6 @@ let pokemonRepository = (function () {
         return pokemonList;
     }
     function getAll() {
-
-
         return pokemonList;
     }
 
@@ -169,19 +167,19 @@ pokemonRepository.loadList().then(function () {
 
 function findPokemon() {
     var divsPokemon = document.querySelectorAll('.button-div');
-    divsPokemon.forEach(function(div) {
+    divsPokemon.forEach(function (div) {
         div.style.display = '';
     });
 
     var inputValue = document.querySelector('#searchInput').value.toUpperCase();
     var matchFound = false;
     //looks through all the text inside the divs for the match with the input
-    for (let i = 0; i < divsPokemon.length; i++){
+    for (let i = 0; i < divsPokemon.length; i++) {
         var divNameText = divsPokemon[i].querySelector('.div-name').innerText;
-        if(divNameText.indexOf(inputValue) > -1){
+        if (divNameText.indexOf(inputValue) > -1) {
             divsPokemon[i].style.display = '';
-            matchFound = true; 
-        }else{
+            matchFound = true;
+        } else {
             divsPokemon[i].style.display = 'none';
         }
     }
@@ -202,8 +200,8 @@ function findPokemon() {
 }
 
 document.querySelector('#searchButton').addEventListener('click', findPokemon);
-document.querySelector('#searchInput').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter'){
+document.querySelector('#searchInput').addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
         findPokemon();
     }
 });

@@ -41,7 +41,7 @@ body, html {
     border: 2px solid var(--primary-color);
     border-radius: 13px;
     padding: 15px;
-    margin: none;
+    margin: 0;
     opacity: 0.95;
     text-transform: uppercase;
      transition: 0.4s ease; 
@@ -94,7 +94,7 @@ input.form-control:focus {
 }
 
 .modal-dialog img {
-    width: 40%;
+    width: 40%;	
 
 }
 
