@@ -16,13 +16,13 @@ let pokemonRepository = (function () {
         if (typeof pokemon === 'object' && 'name' in pokemon && 'detailsUrl' in pokemon) {
             pokemonList.push(pokemon);
         } else {
-            console.log('Please use only the keys: name & detailsurl');
+            console.log('Please use only the keys: name & detailsUrl');
         }
     }
     //display one single pokemon
     function addListItem(pokemon) {
         loadDetails(pokemon).then(function () {
-            let pokemonAll = document.querySelector('.pokemon-list');
+            let pokemonAll = document.querySelector(".pokemon-list");
             let pokemonItem = document.createElement('div');
             pokemonItem.classList.add('button-div', 'col-6', 'col-md-3', 'col-sm-4', 'mb-3');
 
@@ -205,17 +205,3 @@ document.querySelector('#searchInput').addEventListener('keydown', function (eve
         findPokemon();
     }
 });
-
-//  async function findPokemon() {
-//     await pokemonRepository.loadList();
-//     let inputValue = document.querySelector('#searchInput').value.toLowerCase();
-
-//     let founPokemon = pokemonRepository.getPokemonList().filter((pokemon)=> {
-//         return pokemon.name.toLowerCase().includes(inputValue);
-//     })
-//     if (founPokemon) {
-//         console.log('found', founPokemon);
-//     } else {
-//         console.log('nothing');
-//     }
-// }
