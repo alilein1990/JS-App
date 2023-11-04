@@ -15,40 +15,42 @@
 </head>
 
 <body>
-    <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
-      <img src="./img/logo-Pokemon.png" height="80"
-        class="d-inline-block align-top img-pokemon" alt="pokemon logo and a picture of picachu">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <div class=" form-inline ml-auto">
-          <input type="text" id="searchInput" class="nav-item form-control custom-input" aria-label="Searchbar for a Pokemon">
-          <button id="searchButton" class="btn btn-warning">Search</button>
-        </div>
+  <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
+    <img src="./img/logo-Pokemon.png" height="80" class="d-inline-block align-top img-pokemon"
+      alt="pokemon logo and a picture of picachu">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class=" form-inline ml-auto">
+        <input type="text" id="searchInput" class="nav-item form-control custom-input"
+          aria-label="Searchbar for a Pokemon">
+        <button id="searchButton" class="btn btn-warning">Search</button>
       </div>
-    </nav>
+    </div>
+  </nav>
   <main>
     <div class="pokemon-list row"></div>
- </main>
- <footer>
+  </main>
+  <footer>
     <!-- Modal -->
-    <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-labelledby="pokemonModal" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">ModalH5</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-          </div>
+    <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-labelledby="pokemonModal"
+      aria-hidden="true">
+
+      <div class="modal-content modal-dialog" role="document">
+        <div class="modal-header">
+          <h5 class="modal-title">ModalH5</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
         </div>
       </div>
     </div>
+
   </footer>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

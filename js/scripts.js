@@ -22,7 +22,7 @@ let pokemonRepository = (function () {
     //display one single pokemon
     function addListItem(pokemon) {
         loadDetails(pokemon).then(function () {
-            let pokemonAll = document.querySelector(".pokemon-list");
+            let pokemonAll = document.querySelector('.pokemon-list');
             let pokemonItem = document.createElement('div');
             pokemonItem.classList.add('button-div', 'col-6', 'col-md-3', 'col-sm-4', 'mb-3');
 
@@ -88,6 +88,7 @@ let pokemonRepository = (function () {
             // Now we add the details to the item
             //spirites & front_default defined in the API itselfs, as url was 
             item.imageUrl = details.sprites.front_default;
+            item.modalImageUrl = details.sprites.other['official-artwork'].front_default;
             item.abilities = details.abilities;
             item.height = details.height;
             item.types = details.types;
@@ -103,7 +104,7 @@ let pokemonRepository = (function () {
         loadDetails(pokemon).then(function () {
             displayModal(pokemon);
         });
-    };
+    }
 
     function displayModal(pokemon) {
         let modalTitle = document.querySelector('.modal-title')
@@ -113,18 +114,18 @@ let pokemonRepository = (function () {
         modalBody.innerText = '';
         modalTitle.innerText = pokemon.name;
         let imageElement = document.createElement('img');
-        imageElement.src = pokemon.imageUrl;
+        imageElement.src = pokemon.modalImageUrl;
         console.log('img2', imageElement)
         let contentElement = document.createElement('p');
         contentElement.innerText = 'Height: ' + pokemon.height;
 
         let abilityElement = document.createElement('p');
         let abilitiesPokemon = pokemon.abilities.map(ability => ability.ability.name)
-        abilityElement.innerText = 'Abilities: ' + abilitiesPokemon.map(ability => ability.charAt(0).toUpperCase() + ability.slice(1));;
+        abilityElement.innerText = 'Abilities: ' + abilitiesPokemon.map(ability => ability.charAt(0).toUpperCase() + ability.slice(1));
 
         let typeElement = document.createElement('p');
         let typePokemon = pokemon.types.map(type => type.type.name)
-        typeElement.innerText = 'Types: ' + typePokemon.map(ability => ability.charAt(0).toUpperCase() + ability.slice(1));;
+        typeElement.innerText = 'Type: ' + typePokemon.map(ability => ability.charAt(0).toUpperCase() + ability.slice(1));
 
         modalBody.appendChild(contentElement);
         modalBody.appendChild(typeElement);
@@ -144,6 +145,40 @@ let pokemonRepository = (function () {
         let messageElement = document.querySelector('.load-message');
         document.body.removeChild(messageElement);
     }
+    
+    function findPokemon() {
+        let divsPokemon = document.querySelectorAll('.button-div');
+        divsPokemon.forEach(function (div) {
+            div.style.display = '';
+        });
+
+        let inputValue = document.querySelector('#searchInput').value.toUpperCase();
+        let matchFound = false;
+        //looks through all the text inside the divs for the match with the input
+        for (let i = 0; i < divsPokemon.length; i++) {
+            let divNameText = divsPokemon[i].querySelector('.div-name').innerText;
+            if (divNameText.indexOf(inputValue) > -1) {
+                divsPokemon[i].style.display = '';
+                matchFound = true;
+            } else {
+                divsPokemon[i].style.display = 'none';
+            }
+        }
+        //removes errorMessage
+        let existingErrorMessage = document.querySelector('.no-pokemon-message');
+        if (existingErrorMessage) {
+            existingErrorMessage.remove();
+        }
+        //displays message when no match found
+        if (!matchFound) {
+            let main = document.querySelector('main');
+            let noPokemon = document.createElement('h2');
+            noPokemon.classList.add('no-pokemon-message');
+            noPokemon.innerText = 'No Pokemon Matches The Search, Please Try Again. 😃';
+            main.appendChild(noPokemon);
+        }
+        document.querySelector('#searchInput').value = '';
+    }
 
     return {
         getAll,
@@ -153,7 +188,8 @@ let pokemonRepository = (function () {
         loadList,
         loadDetails,
         getPokemonList,
-        displayLoadingMessage
+        displayLoadingMessage,
+        findPokemon
     };
 })();
 
@@ -165,43 +201,9 @@ pokemonRepository.loadList().then(function () {
 
 });
 
-function findPokemon() {
-    var divsPokemon = document.querySelectorAll('.button-div');
-    divsPokemon.forEach(function (div) {
-        div.style.display = '';
-    });
-
-    var inputValue = document.querySelector('#searchInput').value.toUpperCase();
-    var matchFound = false;
-    //looks through all the text inside the divs for the match with the input
-    for (let i = 0; i < divsPokemon.length; i++) {
-        var divNameText = divsPokemon[i].querySelector('.div-name').innerText;
-        if (divNameText.indexOf(inputValue) > -1) {
-            divsPokemon[i].style.display = '';
-            matchFound = true;
-        } else {
-            divsPokemon[i].style.display = 'none';
-        }
-    }
-    //removes errorMessage
-    var existingErrorMessage = document.querySelector('.no-pokemon-message');
-    if (existingErrorMessage) {
-        existingErrorMessage.remove();
-    }
-    //displays message when no match found
-    if (!matchFound) {
-        var main = document.querySelector('main');
-        var noPokemon = document.createElement('h2');
-        noPokemon.classList.add('no-pokemon-message');
-        noPokemon.innerText = 'No Pokemon Matches The Search, Please Try Again. 😃';
-        main.appendChild(noPokemon);
-    }
-    document.querySelector('#searchInput').value = '';
-}
-
-document.querySelector('#searchButton').addEventListener('click', findPokemon);
+document.querySelector('#searchButton').addEventListener('click', pokemonRepository.findPokemon);
 document.querySelector('#searchInput').addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
-        findPokemon();
+        pokemonRepository.findPokemon();
     }
 });
