@@ -7,6 +7,10 @@
 body {
     box-sizing: border-box;
 }
+.modal{
+    height: 100vh;
+    width: 100vw;
+}
 
 body.modal-open .modal {
     overflow: hidden;
