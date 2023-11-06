@@ -1,12 +1,12 @@
 # JS-App
  
 ### Project description
-It is a small application that fetches data about the pokemon from an external API, displays detaills of a pokemon when clicked on the name and allows the user to search for specific pokemon by name.
+It is a small application that fetches data about the Pokemon from an external API, displays detaills of a Pokemon when clicked on the name and allows the user to search for specific Pokemon by name.
 
 ### Project dependencies
 In the project JS, HTML, CSS and Bootstrap was used.
 
-### Which API the project uses
+### API for the application
 API: https://pokeapi.co/
 
 ### User Stories for the application
