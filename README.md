@@ -11,6 +11,7 @@ API: https://pokeapi.co/
 
 ### User Stories for the application
 As a user, I want to click on the image of the Pokemon so that I can see more details about this specific Pokemon.
+
 As a user, I want to type the name of the Pokemon into the search bar and click enter or on the search button so that I will be displayed that specific Pokemon and don't have to scroll through the whole list.
 
 ### Link to the application
