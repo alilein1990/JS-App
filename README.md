@@ -18,5 +18,5 @@ As a user, I want to type the name of the Pokemon into the search bar and click 
 https://alinalein.github.io/JS-App/
 
 ### Visualization of the application
-<img width="949" alt="image" src="https://github.com/alinalein/JS-App/assets/111589183/96eb5c26-3bc2-40f0-a9fe-cb10fe1a304d">
+<img width="956" alt="image" src="https://github.com/alinalein/JS-App/assets/111589183/d0f5a711-62b4-4218-8146-c27dce3a51e1">
 
