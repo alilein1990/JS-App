@@ -1,2 +1,2 @@
-*.json
-.gitattributes
+node_modules
+/*.json
