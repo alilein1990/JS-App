@@ -145,7 +145,7 @@ let pokemonRepository = (function () {
         let messageElement = document.querySelector('.load-message');
         document.body.removeChild(messageElement);
     }
-    
+
     function findPokemon() {
         let divsPokemon = document.querySelectorAll('.button-div');
         divsPokemon.forEach(function (div) {
@@ -174,7 +174,7 @@ let pokemonRepository = (function () {
             let main = document.querySelector('main');
             let noPokemon = document.createElement('h2');
             noPokemon.classList.add('no-pokemon-message');
-            noPokemon.innerText = 'No Pokemon Matches The Search, Please Try Again. 😃';
+            noPokemon.innerText = 'No Pokemon Matches the Search. Please Try Again. 😃';
             main.appendChild(noPokemon);
         }
         document.querySelector('#searchInput').value = '';

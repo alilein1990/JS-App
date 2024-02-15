@@ -7,16 +7,18 @@
 body {
     box-sizing: border-box;
 }
-body, html {
+
+body,
+html {
     height: 100%;
     margin: 0;
-    background-image: url("../img/grass_with_river_background_by_willdinomaster55_df0dwcb-pre.jpg");
-    background-size: cover;
+    background-image: url("../img/grass_with_river_background_by_willdinomaster55_df0dwcb-pre.jpg") no-repeat center;
+    /* background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-
+    background-attachment: fixed; */
 }
-.modal{
+
+.modal {
     height: 100vh;
     width: 100vw;
 }
@@ -24,14 +26,16 @@ body, html {
 body.modal-open .modal {
     overflow: hidden;
 }
+
 * {
     font-family: 'Rubik', sans-serif;
 }
 
-.element.style{
+.element.style {
     padding: 0;
 }
-main{
+
+main {
     padding-left: 120px;
     padding-right: 120px;
     padding-top: 5px;
@@ -48,33 +52,40 @@ main{
     margin: 0;
     opacity: 0.95;
     text-transform: uppercase;
-     transition: 0.4s ease; 
+    transition: 0.4s ease;
 }
 
 .button-class:hover {
     background-color: var(--primary-color);
-    border: 2px solid var(--third-color);;
+    border: 2px solid var(--third-color);
+    ;
     /* box-shadow: 0 0 15px rgba(65, 226, 247, 0.7);  */
     opacity: 0.8;
     transform: scale(1.04);
 }
-.button-class:focus{
+
+.button-class:focus {
     outline: none;
-    border: 2px solid var(--third-color);;
+    border: 2px solid var(--third-color);
+    ;
 }
+
 input.form-control:focus {
     border-color: inherit;
     box-shadow: none;
 }
-#searchInput{
+
+#searchInput {
     font-family: 'Rubik', sans-serif;
     width: 60%;
 }
-.btn{
+
+.btn {
     font-family: 'Rubik', sans-serif;
     right: 5px;
 }
-.btn:focus{
+
+.btn:focus {
     box-shadow: none;
 }
 
@@ -82,7 +93,9 @@ input.form-control:focus {
     margin: 15% auto;
     width: 450px;
 }
-.no-pokemon-message, .load-message {
+
+.no-pokemon-message,
+.load-message {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -93,6 +106,7 @@ input.form-control:focus {
     padding: 2px;
     border-radius: 10px;
 }
+
 .modal-title {
     text-transform: uppercase;
 }
@@ -111,13 +125,16 @@ input.form-control:focus {
     .modal-dialog {
         width: 250px;
     }
-    .img-pokemon{
+
+    .img-pokemon {
         height: 50px;
     }
+
     main {
         padding-left: 10px;
         padding-right: 10px;
     }
+
     .button-class {
         font-size: 13px;
     }
@@ -128,6 +145,7 @@ input.form-control:focus {
         padding-left: 40px;
         padding-right: 40px;
     }
+
     .modal-dialog {
         width: 300px;
     }
