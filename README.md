@@ -12,20 +12,12 @@ API: https://pokeapi.co/
 
 ## Clone the repository:
 ```
-git clone https://github.com/alinalein/js-app.git
+git clone https://github.com/alinalein/JS-App.git
 ```
-### Change the directory:
-```
-cd js-app
-```
-### Install the dependencies
-```
-npm install
-```
-### Run the server
-```
-npm dev
-```
+
+## Run the application on the server 
+1. Install the extension Live Server in your VS code.
+2. Right-click on the index.html and select "Open with Live Server".
 
 ## User Stories for the application
 As a user, I want to click on the image of the Pokemon so that I can see more details about this specific Pokemon.
