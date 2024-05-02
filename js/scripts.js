@@ -1,9 +1,10 @@
-//The array of pokemon in IIFE with return function add & getAll
+// Immediately-Invoked Function Expression / IIFE returns some functions from inside it
 let pokemonRepository = (function () {
 
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-    //returns a list of all pokemon contained in array pokemonList
+
+    // returns a list of all pokemon in the array pokemonList
     function getPokemonList() {
         return pokemonList;
     }
@@ -19,7 +20,8 @@ let pokemonRepository = (function () {
             console.log('Please use only the keys: name & detailsUrl');
         }
     }
-    //display one single pokemon
+
+    // displays one single pokemon
     function addListItem(pokemon) {
         loadDetails(pokemon).then(function () {
             let pokemonAll = document.querySelector('.pokemon-list');
@@ -41,11 +43,12 @@ let pokemonRepository = (function () {
             pokemonButton.appendChild(imageElement);
             pokemonItem.appendChild(pokemonButton);
             pokemonAll.appendChild(pokemonItem);
-            //call the function on click for button
+            // call the function on click for button
             addButtonEvent(pokemonButton, pokemon);
         })
     }
-    //add event on click for the button, 2 parameter
+
+    // add event on click for the pokemon button / modal
     function addButtonEvent(pokemonButton, pokemon) {
         pokemonButton.addEventListener('click', function () {
             showDetails(pokemon);
@@ -72,21 +75,19 @@ let pokemonRepository = (function () {
         })
     }
 
-    // load only image, height, type per pokemon, not the other details from the API
+    // load the  details  image, height, abilities, type of the pokemon from the API
     function loadDetails(item) {
-        //deatilsUrl comes from loadList() - is the item.url
+        //detailsUrl comes from loadList() - is the item.url
         displayLoadingMessage();
         let url = item.detailsUrl;
 
         return fetch(url).then(function (response) {
             // console.log('resp',reponse);
-
             return response.json();
 
         }).then(function (details) {
-
             // Now we add the details to the item
-            //spirites & front_default defined in the API itselfs, as url was 
+            // spirites & front_default defined in the API itselfs, as url was 
             item.imageUrl = details.sprites.front_default;
             item.modalImageUrl = details.sprites.other['official-artwork'].front_default;
             item.abilities = details.abilities;
@@ -105,7 +106,7 @@ let pokemonRepository = (function () {
             displayModal(pokemon);
         });
     }
-
+    // displays the modal with info about the requested pokemon
     function displayModal(pokemon) {
         let modalTitle = document.querySelector('.modal-title')
         let modalBody = document.querySelector('.modal-body')
@@ -121,11 +122,11 @@ let pokemonRepository = (function () {
 
         let abilityElement = document.createElement('p');
         let abilitiesPokemon = pokemon.abilities.map(ability => ability.ability.name)
-        abilityElement.innerText = 'Abilities: ' + abilitiesPokemon.map(ability => ability.charAt(0).toUpperCase() + ability.slice(1));
+        abilityElement.innerText = 'Abilities: ' + abilitiesPokemon.map(ability => ability.charAt(0).toUpperCase() + ability.slice(1)).join(', ');
 
         let typeElement = document.createElement('p');
         let typePokemon = pokemon.types.map(type => type.type.name)
-        typeElement.innerText = 'Type: ' + typePokemon.map(ability => ability.charAt(0).toUpperCase() + ability.slice(1));
+        typeElement.innerHTML = '<strong>Type:</strong> ' + typePokemon.map(ability => ability.charAt(0).toUpperCase() + ability.slice(1)).join(', ');
 
         modalBody.appendChild(contentElement);
         modalBody.appendChild(typeElement);
@@ -133,6 +134,7 @@ let pokemonRepository = (function () {
         modalBody.appendChild(imageElement);
     }
 
+    // shows  a message when pokemon from API are loading
     function displayLoadingMessage() {
         let messageElement = document.createElement('h2');
         messageElement.classList.add('load-message');
@@ -141,11 +143,13 @@ let pokemonRepository = (function () {
         return messageElement;
     }
 
+    // removes the loading message when all pokemon been loaded
     function hideLoadingMessage() {
         let messageElement = document.querySelector('.load-message');
         document.body.removeChild(messageElement);
     }
 
+    // allows to search for pokemon by name
     function findPokemon() {
         let divsPokemon = document.querySelectorAll('.button-div');
         divsPokemon.forEach(function (div) {
@@ -154,7 +158,7 @@ let pokemonRepository = (function () {
 
         let inputValue = document.querySelector('#searchInput').value.toUpperCase();
         let matchFound = false;
-        //looks through all the text inside the divs for the match with the input
+        // looks through all the text inside the divs for the match with the input
         for (let i = 0; i < divsPokemon.length; i++) {
             let divNameText = divsPokemon[i].querySelector('.div-name').innerText;
             if (divNameText.indexOf(inputValue) > -1) {
@@ -164,12 +168,12 @@ let pokemonRepository = (function () {
                 divsPokemon[i].style.display = 'none';
             }
         }
-        //removes errorMessage
+        // removes errorMessage
         let existingErrorMessage = document.querySelector('.no-pokemon-message');
         if (existingErrorMessage) {
             existingErrorMessage.remove();
         }
-        //displays message when no match found
+        // displays message when no match found
         if (!matchFound) {
             let main = document.querySelector('main');
             let noPokemon = document.createElement('h2');
@@ -194,14 +198,17 @@ let pokemonRepository = (function () {
 })();
 
 pokemonRepository.loadList().then(function () {
-    // Now the data has loaded!
+    // after loadList,  data has loaded that further actions can be applied
     pokemonRepository.getAll().forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon);
     });
 
 });
 
-document.querySelector('#searchButton').addEventListener('click', pokemonRepository.findPokemon);
+// activates findPokemon function on click
+document.querySelector('#searchButton').addEventListener('click', pokemonRepository.findPokemon());
+
+// activates findPokemon function on button Enter
 document.querySelector('#searchInput').addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         pokemonRepository.findPokemon();
