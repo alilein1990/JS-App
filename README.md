@@ -1,14 +1,14 @@
 ## JS-App
 It is a small application that fetches data about the Pokemon from an external API, displays details about a Pokemon when clicked on the name and allows the user to search for a specific Pokemon by name.
 
-## Project dependencies
+## API for the application
+API: https://pokeapi.co/
+
+## Technology Stack
 - **Javascript** : Programming language mostly used for interactive and dynamic features on a website.
 - **HTML** : Markup language for creating and structuring content on webpages.
 - **CSS** : Stylesheet language that styles the appearance of HTML  elements on web pages.
 - **Bootstrap** : Front-end framework for creating responsive websites and web applications
-
-## API for the application
-API: https://pokeapi.co/
 
 ## Clone the repository:
 ```
