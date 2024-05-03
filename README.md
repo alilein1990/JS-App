@@ -1,14 +1,14 @@
 ## JS-App
-It is a small application that fetches data about the Pokemon from an external API, displays details about a Pokemon when clicked on the name and allows the user to search for a specific Pokemon by name.
+This is a small application that fetches data about Pokémon from an external API. It displays details about a Pokémon when its modal is clicked and allows the user to search for a specific Pokémon by name.
 
 ## API for the application
 API: https://pokeapi.co/
 
 ## Technology Stack
-- **Javascript** : Programming language mostly used for interactive and dynamic features on a website.
+- **Javascript** : Programming language mostly used for interactive and dynamic features on websites.
 - **HTML** : Markup language for creating and structuring content on webpages.
-- **CSS** : Stylesheet language that styles the appearance of HTML  elements on web pages.
-- **Bootstrap** : Front-end framework for creating responsive websites and web applications
+- **CSS** : Stylesheet language that styles the appearance of HTML elements on web pages.
+- **Bootstrap** : Front-end framework for creating responsive websites and web applications.
 
 ## Clone the repository:
 ```
@@ -20,9 +20,9 @@ git clone https://github.com/alinalein/JS-App.git
 2. Right-click on the index.html and select "Open with Live Server".
 
 ## User Stories for the application
-As a user, I want to click on the image of the Pokemon so that I can see more details about this specific Pokemon.
+As a user, I want to click on the image of a Pokémon so that I can see more details about that specific Pokémon.
 
-As a user, I want to type the name of the Pokemon into the search bar and click enter or on the search button so that I will be displayed this specific Pokemon and don't have to scroll through the whole list.
+As a user, I want to type the name of a Pokémon into the search bar and either press Enter or click on the search button so that I will be shown details of that specific Pokémon without having to scroll through the entire list.
 
 ## Link to the application
 https://alinalein.github.io/JS-App/
