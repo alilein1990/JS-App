@@ -4,6 +4,10 @@
     --third-color: rgb(65, 226, 247);
 }
 
+* {
+    font-family: 'Rubik', sans-serif;
+}
+
 body {
     box-sizing: border-box;
 }
@@ -41,14 +45,6 @@ html {
 .modal {
     height: 100vh;
     width: 100vw;
-}
-
-body.modal-open .modal {
-    overflow: hidden;
-}
-
-* {
-    font-family: 'Rubik', sans-serif;
 }
 
 .element.style {
@@ -107,13 +103,7 @@ input.form-control:focus {
     box-shadow: none;
 }
 
-.modal-dialog {
-    margin: 15% auto;
-    width: 450px;
-}
-
-.no-pokemon-message,
-.load-message {
+.no-pokemon-message {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -123,6 +113,26 @@ input.form-control:focus {
     background-color: var(--third-color);
     padding: 2px;
     border-radius: 10px;
+}
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.spinner-border {
+    width: 4rem;
+    height: 4rem;
+    border-width: 0.4em;
+    opacity: 0.6;
+    animation-duration: 1.1s;
+}
+
+.hide {
+    display: none;
 }
 
 .modal-title {
@@ -135,23 +145,28 @@ input.form-control:focus {
 
 }
 
+.modal-dialog {
+    margin: 15% auto;
+    width: 450px;
+}
+
 .modal-body {
     display: grid;
     justify-items: center;
 }
 
 @media all and (max-width: 575px) {
+    main {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
     .modal-dialog {
         width: 250px;
     }
 
     .img-pokemon {
         height: 50px;
-    }
-
-    main {
-        padding-left: 10px;
-        padding-right: 10px;
     }
 
     .button-class {

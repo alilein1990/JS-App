@@ -118,11 +118,11 @@ let pokemonRepository = (function () {
         imageElement.src = pokemon.modalImageUrl;
         console.log('img2', imageElement)
         let contentElement = document.createElement('p');
-        contentElement.innerText = 'Height: ' + pokemon.height;
+        contentElement.innerHTML = '<strong>Height:</strong> ' + pokemon.height;
 
         let abilityElement = document.createElement('p');
         let abilitiesPokemon = pokemon.abilities.map(ability => ability.ability.name)
-        abilityElement.innerText = 'Abilities: ' + abilitiesPokemon.map(ability => ability.charAt(0).toUpperCase() + ability.slice(1)).join(', ');
+        abilityElement.innerHTML = '<strong>Abilities:</strong> ' + abilitiesPokemon.map(ability => ability.charAt(0).toUpperCase() + ability.slice(1)).join(', ');
 
         let typeElement = document.createElement('p');
         let typePokemon = pokemon.types.map(type => type.type.name)
@@ -136,17 +136,14 @@ let pokemonRepository = (function () {
 
     // shows  a message when pokemon from API are loading
     function displayLoadingMessage() {
-        let messageElement = document.createElement('h2');
-        messageElement.classList.add('load-message');
-        messageElement.innerHTML = 'The List Is Loading...';
-        document.body.appendChild(messageElement);
-        return messageElement;
+        let spinner = document.querySelector('.spinner-border')
+        spinner.classList.remove('hide');
     }
 
     // removes the loading message when all pokemon been loaded
     function hideLoadingMessage() {
-        let messageElement = document.querySelector('.load-message');
-        document.body.removeChild(messageElement);
+        let spinner = document.querySelector('.spinner-border')
+        spinner.classList.add('hide');
     }
 
     // allows to search for pokemon by name
@@ -206,7 +203,7 @@ pokemonRepository.loadList().then(function () {
 });
 
 // activates findPokemon function on click
-document.querySelector('#searchButton').addEventListener('click', pokemonRepository.findPokemon());
+document.querySelector('#searchButton').addEventListener('click', pokemonRepository.findPokemon);
 
 // activates findPokemon function on button Enter
 document.querySelector('#searchInput').addEventListener('keydown', function (event) {
