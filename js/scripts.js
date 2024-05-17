@@ -175,7 +175,7 @@ let pokemonRepository = (function () {
             let main = document.querySelector('main');
             let noPokemon = document.createElement('h2');
             noPokemon.classList.add('no-pokemon-message');
-            noPokemon.innerText = 'No Pokemon Matches the Search. Please Try Again. 😃';
+            noPokemon.innerHTML = 'No Pokemon Matches the Search. <br> Please Try Again. 😃';
             main.appendChild(noPokemon);
         }
         document.querySelector('#searchInput').value = '';
