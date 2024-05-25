@@ -4,7 +4,7 @@ let pokemonRepository = (function () {
     // list gets filled by loadlist & add functions
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
-    let pageSize = 10;
+    let pageSize = 40;
     let currentPage = 1;
 
     // returns a list of all pokemon in the array pokemonList
@@ -36,7 +36,6 @@ let pokemonRepository = (function () {
             let pageLink = document.createElement('a');
             pageLink.className = 'page-link';
             pageLink.textContent = i;
-            pageLink.href = '#';
             pageLink.addEventListener('click', (function (pageNum) {
                 return function (e) {
                     e.preventDefault(); // Prevent default anchor behavior
