@@ -5,7 +5,18 @@ let pokemonRepository = (function () {
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
 
-
+    // returns a list of all pokemon in the array pokemonList
+    function getAllPokemon() {
+        return pokemonList;
+    }
+    // clear the displayed list
+    function clearList() {
+        pokemonList = [];
+        let pokemonAll = document.querySelector('.pokemon-list');
+        if (pokemonAll) {
+            pokemonAll.innerHTML = '';
+        }
+    }
     // allows to add new pokemon to the array if it meets the needed conditions
     function add(pokemon) {
         if (typeof pokemon === 'object' && 'name' in pokemon && 'detailsUrl' in pokemon) {
