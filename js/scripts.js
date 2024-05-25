@@ -3,10 +3,9 @@ let pokemonRepository = (function () {
 
     // list gets filled by loadlist & add functions
     let pokemonList = [];
-
-    // offset: from what pokemon number the pokemon should be shown 
-    // limit : how many pokemon that follow from offset number
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
+    let pageSize = 10;
+    let currentPage = 1;
 
     // returns a list of all pokemon in the array pokemonList
     function getAllPokemon() {
@@ -21,6 +20,53 @@ let pokemonRepository = (function () {
             pokemonAll.innerHTML = '';
         }
     }
+
+    function calculateTotalPages() {
+        return Math.ceil(pokemonList.length / pageSize);
+    }
+
+    function displayPagination() {
+        let totalPages = calculateTotalPages();
+        let paginationContainer = document.querySelector('.pagination');
+        paginationContainer.innerHTML = ''; // Clear existing pagination links
+
+        for (let i = 1; i <= totalPages; i++) {
+            let pageItem = document.createElement('li');
+            pageItem.className = 'page-item';
+            let pageLink = document.createElement('a');
+            pageLink.className = 'page-link';
+            pageLink.textContent = i;
+            pageLink.href = '#';
+            pageLink.addEventListener('click', (function (pageNum) {
+                return function (e) {
+                    e.preventDefault(); // Prevent default anchor behavior
+                    setPage(pageNum);
+                };
+            })(i));
+            pageItem.appendChild(pageLink);
+            paginationContainer.appendChild(pageItem);
+        }
+    }
+
+    function getAllPaginated() {
+        let startIndex = (currentPage - 1) * pageSize;
+        return pokemonList.slice(startIndex, startIndex + pageSize);
+    }
+
+    function displayPage() {
+        let pokemonAll = document.querySelector('.pokemon-list');
+        if (pokemonAll) {
+            pokemonAll.innerHTML = '';
+        }
+        getAllPaginated().forEach(addListItem);
+        displayPagination();
+    }
+
+    function setPage(num) {
+        currentPage = num;
+        displayPage();
+    }
+
     // allows to add new pokemon to the array if it meets the needed conditions
     function add(pokemon) {
         if (typeof pokemon === 'object' && 'name' in pokemon && 'detailsUrl' in pokemon) {
@@ -65,9 +111,11 @@ let pokemonRepository = (function () {
     }
 
     // will load only the name & url of the pokemon from the API
-    function loadList(start = 0, limit = 650) {
+    function loadList(start = 0, limit = 150) {
         clearList();
         displayLoadingMessage();
+        // offset: from what pokemon number the pokemon should be shown 
+        // limit : how many pokemon that follow from offset number
         let urlList = `${apiUrl}?offset=${start}&limit=${limit}`;
 
         return fetch(urlList).then(function (response) {
@@ -81,6 +129,7 @@ let pokemonRepository = (function () {
                 add(pokemon);
             });
             hideLoadingMessage();
+            displayPage();
         }).catch(function (e) {
             console.error(e);
             hideLoadingMessage();
@@ -201,21 +250,27 @@ let pokemonRepository = (function () {
         loadList,
         loadDetails,
         displayLoadingMessage,
-        findPokemon
+        findPokemon,
+        displayPage,
+        setPage,
+        getAllPaginated,
+        displayPagination
     };
 })();
 
-//loads list of 150 pokemon when app just opened
+// loads list of 150 pokemon when app just opened
 pokemonRepository.loadList().then(function () {
     // after loadList, data has loaded that further actions can be applied
     pokemonRepository.getAllPokemon().forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon);
     });
-
+    pokemonRepository.displayPage();
 });
 
+
 const generations = [
-    { id: '#gen-one', start: 0, limit: 151 },
+    // { id: '#gen-one', start: 0, limit: 151 },
+    { id: '#gen-one', start: 0, limit: 51 },
     { id: '#gen-two', start: 151, limit: 100 },
     { id: '#gen-three', start: 251, limit: 135 },
     { id: '#gen-four', start: 386, limit: 107 },
@@ -226,6 +281,7 @@ const generations = [
 generations.forEach(gen => {
     document.querySelector(gen.id).addEventListener('click', function () {
         pokemonRepository.loadList(gen.start, gen.limit).then(function () {
+            pokemonRepository.displayPage();
             pokemonRepository.getAllPokemon().forEach(pokemonRepository.addListItem);
         });
     });
