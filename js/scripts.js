@@ -1,17 +1,26 @@
 // Immediately-Invoked Function Expression / IIFE returns some functions from inside it
 let pokemonRepository = (function () {
 
+    // list gets filled by loadlist & add functions
     let pokemonList = [];
-    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+
+    // offset: from what pokemon number the pokemon should be shown 
+    // limit : how many pokemon that follow from offset number
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
 
     // returns a list of all pokemon in the array pokemonList
-    function getPokemonList() {
-        return pokemonList;
-    }
-    function getAll() {
+    function getAllPokemon() {
         return pokemonList;
     }
 
+    // clear the displayed list
+    function clearList() {
+        pokemonList = [];
+        let pokemonAll = document.querySelector('.pokemon-list');
+        if (pokemonAll) {
+            pokemonAll.innerHTML = '';
+        }
+    }
     // allows to add new pokemon to the array if it meets the needed conditions
     function add(pokemon) {
         if (typeof pokemon === 'object' && 'name' in pokemon && 'detailsUrl' in pokemon) {
@@ -56,9 +65,12 @@ let pokemonRepository = (function () {
     }
 
     // will load only the name & url of the pokemon from the API
-    function loadList() {
+    function loadList(start = 0, limit = 650) {
+        clearList();
         displayLoadingMessage();
-        return fetch(apiUrl).then(function (response) {
+        let urlList = `${apiUrl}?offset=${start}&limit=${limit}`;
+
+        return fetch(urlList).then(function (response) {
             return response.json();
         }).then(function (json) {
             json.results.forEach(function (item) {
@@ -182,24 +194,41 @@ let pokemonRepository = (function () {
     }
 
     return {
-        getAll,
+        getAllPokemon,
         add,
         addListItem,
         showDetails,
         loadList,
         loadDetails,
-        getPokemonList,
         displayLoadingMessage,
         findPokemon
     };
 })();
 
+//loads list of 150 pokemon when app just opened
 pokemonRepository.loadList().then(function () {
-    // after loadList,  data has loaded that further actions can be applied
-    pokemonRepository.getAll().forEach(function (pokemon) {
+    // after loadList, data has loaded that further actions can be applied
+    pokemonRepository.getAllPokemon().forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon);
     });
 
+});
+
+const generations = [
+    { id: '#gen-one', start: 0, limit: 151 },
+    { id: '#gen-two', start: 151, limit: 100 },
+    { id: '#gen-three', start: 251, limit: 135 },
+    { id: '#gen-four', start: 386, limit: 107 },
+    { id: '#gen-five', start: 493, limit: 156 },
+    { id: '#gen-all', start: 0, limit: 650 },
+];
+
+generations.forEach(gen => {
+    document.querySelector(gen.id).addEventListener('click', function () {
+        pokemonRepository.loadList(gen.start, gen.limit).then(function () {
+            pokemonRepository.getAllPokemon().forEach(pokemonRepository.addListItem);
+        });
+    });
 });
 
 // activates findPokemon function on click
@@ -211,3 +240,4 @@ document.querySelector('#searchInput').addEventListener('keydown', function (eve
         pokemonRepository.findPokemon();
     }
 });
+

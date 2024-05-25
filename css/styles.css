@@ -57,6 +57,10 @@ main {
     padding-top: 5px;
 }
 
+.img-pokemon {
+    margin-right: 1vw;
+}
+
 .button-class {
     color: black;
     height: 100%;
@@ -172,6 +176,10 @@ input.form-control:focus {
 
     .button-class {
         font-size: 13px;
+    }
+
+    .generation_dropdown {
+        margin-top: 1vh;
     }
 }
 

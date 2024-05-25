@@ -22,16 +22,30 @@
     <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
       <img src="./img/logo-Pokemon.png" height="80" class="d-inline-block align-top img-pokemon"
         alt="pokemon logo and a picture of picachu">
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <div class=" form-inline ml-auto">
+        <div class="form-inline">
           <input type="text" id="searchInput" class="nav-item form-control custom-input"
             aria-label="Searchbar for a Pokemon">
           <button id="searchButton" class="btn btn-warning">Search</button>
+        </div>
+        <div class="dropdown form-inline ml-auto">
+          <button class="btn btn-warning dropdown-toggle generation_dropdown" type="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Select Generation
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" id="gen-one">Generation I</a></li>
+            <li><a class="dropdown-item" id="gen-two">Generation II</a></li>
+            <li><a class="dropdown-item" id="gen-three">Generation III</a></li>
+            <li><a class="dropdown-item" id="gen-four">Generation IV</a></li>
+            <li><a class="dropdown-item" id="gen-five">Generation V</a></li>
+            <li><a class="dropdown-item" id="gen-all">All Generations</a></li>
+          </ul>
         </div>
       </div>
     </nav>
