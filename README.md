@@ -24,6 +24,8 @@ As a user, I want to click on the image of a Pokémon so that I can see more det
 
 As a user, I want to type the name of a Pokémon into the search bar and either press Enter or click on the search button so that I will be shown details of that specific Pokémon without having to scroll through the entire list.
 
+As a user, I want to select a Pokémon generation from the dropdown menu to see the specific sets of Pokémon without scrolling through the whole list first. 
+
 ## Link to the application
 https://alinalein.github.io/JS-App/
 
