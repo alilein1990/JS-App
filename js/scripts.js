@@ -4,7 +4,7 @@ let pokemonRepository = (function () {
     // list gets filled by loadlist & add functions
     let pokemonList = [];
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
-    let pageSize = 40;
+    let pageSize = 20;
     let currentPage = 1;
 
     // returns a list of all pokemon in the array pokemonList
@@ -55,15 +55,25 @@ let pokemonRepository = (function () {
     function displayPage() {
         let pokemonAll = document.querySelector('.pokemon-list');
         if (pokemonAll) {
-            pokemonAll.innerHTML = '';
+            pokemonAll.style.opacity = 0;
+            setTimeout(() => {
+                pokemonAll.innerHTML = '';
+                getAllPaginated().forEach(addListItem);
+                displayPagination();
+                pokemonAll.style.opacity = 1;
+            }, 500);
         }
-        getAllPaginated().forEach(addListItem);
-        displayPagination();
     }
-
+    function scrollToTop(smooth = true) {
+        window.scrollTo({
+            top: 0,
+            behavior: smooth ? 'smooth' : 'auto'
+        });
+    }
     function setPage(num) {
         currentPage = num;
         displayPage();
+        scrollToTop();
     }
 
     // allows to add new pokemon to the array if it meets the needed conditions
@@ -259,6 +269,7 @@ let pokemonRepository = (function () {
 
 // loads list of 150 pokemon when app just opened
 pokemonRepository.loadList().then(function () {
+    pokemonRepository.setPage(1);
     // after loadList, data has loaded that further actions can be applied
     pokemonRepository.getAllPokemon().forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon);
@@ -279,6 +290,7 @@ const generations = [
 
 generations.forEach(gen => {
     document.querySelector(gen.id).addEventListener('click', function () {
+        pokemonRepository.setPage(1);
         pokemonRepository.loadList(gen.start, gen.limit).then(function () {
             pokemonRepository.displayPage();
             pokemonRepository.getAllPokemon().forEach(pokemonRepository.addListItem);
