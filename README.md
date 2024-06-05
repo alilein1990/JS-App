@@ -1,4 +1,4 @@
-## JS-App
+## JS-App (Pokédex)
 This is a small application that fetches data about Pokémon from an external API. It displays details about a Pokémon when its modal is clicked and allows the user to search for a specific Pokémon by name.
 
 ## API for the application
