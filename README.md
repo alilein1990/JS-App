@@ -30,6 +30,6 @@ As a user, I want to select a Pokémon generation from the dropdown menu to see 
 https://alinalein.github.io/JS-App/
 
 ## Visualization of the application
-<img width="959" alt="image" src=" github.com/alinalein/JS-App/assets/111589183/cbe1ca54-cc59-45f5-9b8a-accf53466fce">
+<img width="959" alt="image" src="github.com/alinalein/JS-App/assets/111589183/cbe1ca54-cc59-45f5-9b8a-accf53466fce">
 
 
