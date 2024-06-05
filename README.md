@@ -1,5 +1,5 @@
 ## JS-App (Pokédex)
-This is a small application that fetches data about Pokémon from an external API. It displays details about a Pokémon when its modal is clicked and allows the user to search for a specific Pokémon by name.
+This is a small application that fetches data about Pokémon from an external API. It displays details about a Pokémon when its modal is clicked, allows the user to search for a specific Pokémon by name and choose between different Pokémon generations.
 
 ## API for the application
 API: https://pokeapi.co/
