@@ -31,6 +31,8 @@ https://alinalein.github.io/JS-App/
 
 ## Visualization of the application
 <img width="959" alt="image" src="https://github.com/alinalein/JS-App/assets/111589183/eaf7bce3-7f54-40cf-a233-6cfec26361aa">
+![js_pokemon-phone](https://github.com/alinalein/JS-App/assets/111589183/204192d3-99bd-4189-8009-2688a6c06d86)
+
 
 
 
