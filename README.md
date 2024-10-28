@@ -5,10 +5,10 @@ This is a small application that fetches data about Pokémon from an external AP
 API: https://pokeapi.co/
 
 ## Technology Stack
-◦❍ **Javascript** : Programming language mostly used for interactive and dynamic features on websites.  
-◦❍ **HTML** : Markup language for creating and structuring content on webpages.  
-◦❍ **CSS** : Stylesheet language that styles the appearance of HTML elements on web pages.   
-◦❍ **Bootstrap** : Front-end framework for creating responsive websites and web applications.  
+- **Javascript** : Programming language mostly used for interactive and dynamic features on websites.  
+- **HTML** : Markup language for creating and structuring content on webpages.  
+- **CSS** : Stylesheet language that styles the appearance of HTML elements on web pages.   
+- **Bootstrap** : Front-end framework for creating responsive websites and web applications.  
 
 ## Clone the repository:
 ```
@@ -27,11 +27,11 @@ As a user, I want to type the name of a Pokémon into the search bar and either 
 As a user, I want to select a Pokémon generation from the dropdown menu to see the specific sets of Pokémon without scrolling through the whole list first. 
 
  ## Features ✅
-❍ Fetch and display data on Pokémon from an external API.  
-❍ Show a list of items for the user to browse.  
-❍ Allow users to search for specific items by name through a search bar.  
-❍ Let users click on any item to view more details about it.  
-❍ Allow users to filter items by selecting a generation from a dropdown menu.  
+- Fetch and display data on Pokémon from an external API.  
+- Show a list of items for the user to browse.  
+- Allow users to search for specific items by name through a search bar.  
+- Let users click on any item to view more details about it.  
+- Allow users to filter items by selecting a generation from a dropdown menu.  
 
 ## Link to the application
 https://alinalein.github.io/JS-App/
